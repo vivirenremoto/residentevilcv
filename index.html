@@ -14,7 +14,7 @@
 
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 1000px) {
     #player{background-size:60% auto;}
 }
 </style>
@@ -88,6 +88,8 @@ $(window).resize(function(){
 
 
 function moveLeft(){
+clearInterval(timer_scroll);
+        timer_scroll = setInterval(function(){
     current_x = parseInt($('#bg').css('left'));
     current_x += move_diff;
     if( current_x > 0 ){
@@ -95,9 +97,12 @@ function moveLeft(){
         return;
     }
     $('#bg').css('left', current_x);
+}, 1);
 }
 
 function moveRight(){
+clearInterval(timer_scroll);
+        timer_scroll = setInterval(function(){
     current_x = parseInt($('#bg').css('left'));
     current_x -= move_diff;
     if( current_x <= ((width_sized-screen_width)*-1) ){
@@ -105,15 +110,13 @@ function moveRight(){
         return;
     }
     $('#bg').css('left', current_x);
+}, 1);
 }
 
 
-if( screen_width > 500 ){
+if( screen_width > 1000 ){
     $('#control_left').mousemove(function(){
-        clearInterval(timer_scroll);
-        timer_scroll = setInterval(function(){
-            moveLeft();
-        }, 1);
+        moveLeft();
     });
 
     $('#control_left').mouseout(function(){
@@ -122,10 +125,7 @@ if( screen_width > 500 ){
 
 
     $('#control_right').mousemove(function(){
-        clearInterval(timer_scroll);
-        timer_scroll = setInterval(function(){
-            moveRight();
-        }, 1);
+        moveRight();
     });
 
     $('#control_right').mouseout(function(){
@@ -133,12 +133,20 @@ if( screen_width > 500 ){
     });
 }else{
 
-    $('#control_left').on("taphold",function(){
+    $('#control_left').on("vmousedown",function(){
         moveLeft();
     });
 
-    $('#control_right').on("taphold",function(){
+    $('#control_left').on("vmouseup",function(){
+        clearInterval(timer_scroll);
+    });
+
+    $('#control_right').on("vmousedown",function(){
         moveRight();
+    });
+
+    $('#control_right').on("vmouseup",function(){
+        clearInterval(timer_scroll);
     });
 
 }
