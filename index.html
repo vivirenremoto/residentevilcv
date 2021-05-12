@@ -437,7 +437,7 @@ if( screen_width > 1000 ){
 $("#close").click(function(){
     
     $('#sound_select')[0].play();
-    
+
     $("#modal").animate({
         marginLeft:screen_height_half
     }, 1000);
@@ -532,6 +532,8 @@ $('.obj').click(function(){
 
             $(current_obj).fadeOut('fast', function(){
 
+                
+                $('#sound_raven')[0].play();
 
                 $('#raven').stop().css('left', $(current_obj).css('left') ).css('top', $(current_obj).css('top') ).show().animate({
                     top: target_size*-1,
@@ -570,7 +572,6 @@ $('.obj').click(function(){
 
             setTimeout(function(){
 
-                $('#sound_raven')[0].play();
 
 
                 $('#player').css('bottom', top_diff).css('background-image', "url('static/normal2.png')");
