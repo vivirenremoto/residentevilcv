@@ -528,12 +528,15 @@ $('.obj').click(function(){
             $('#sound_shoot')[0].play();
 
 
+            setTimeout(function(){
+                $('#sound_raven')[0].play();
+            }, 200);
             
+
 
             $(current_obj).fadeOut('fast', function(){
 
                 
-                $('#sound_raven')[0].play();
 
                 $('#raven').stop().css('left', $(current_obj).css('left') ).css('top', $(current_obj).css('top') ).show().animate({
                     top: target_size*-1,
