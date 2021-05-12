@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="overflow:hidden;">
+
+
+<style>
+#player{background-size:100%;}
+
+
+
+@media screen and (max-width: 500px) {
+    #player{background-size:60% auto;}
+}
+</style>
+
+
+<div id="control_left" style="z-index:3;position:fixed;left:0;top:0;width:30%;height:100%;"></div>
+
+<div id="control_right" style="z-index:3;position:fixed;right:0;top:0;width:30%;height:100%;"></div>
+
+
+<!--
+<div id="over" style="position:fixed;z-index:2;left:0;top:0;width:100%;height:100%;"></div>
+-->
+
+<div id="player" style="z-index:1;background-image:url('static/normal2.png');width:420px;background-repeat:no-repeat;background-position:left bottom;height:494px;position:fixed;left:0;bottom:0;"></div>
+
+<div id="bg" style="position:fixed;left:0;top:0;width:100%;height:100%;background:url('static/bg.jpg');background-size:auto 100%;background-repeat:no-repeat;">
+
+    <div class="obj" style="cursor:pointer;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;"></div>
+
+</div>
+
+<audio id="sound_music" loop>
+    <source src="static/mp3/wind.mp3" type="audio/mp3">
+</audio>
+
+
+<audio id="sound_shoot">
+    <source src="static/mp3/shoot2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_raven">
+    <source src="static/mp3/raven.mp3" type="audio/mp3">
+</audio>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.js"></script>
+
+
+<script>
+var top_diff = -85;
+var screen_width = $(document).width();
+var screen_width_half = parseInt(screen_width / 2);
+var screen_height = $(document).height();
+var screen_height_half = parseInt(screen_height / 2);
+var move_diff = 2;
+
+
+var height_sized;
+var ratio;
+var width_sized;
+
+var current_x = parseInt($('#bg').css('left'));
+var timer_scroll;
+var current_obj;
+var playing_music = false;
+
+
+$('body').click(function(){
+    if( !playing_music ){
+        playing_music = true;
+        $('#sound_music')[0].play();
+    }
+});
+
+$(window).resize(function(){
+    resizeScreen();
+});
+
+
+function moveLeft(){
+    current_x = parseInt($('#bg').css('left'));
+    current_x += move_diff;
+    if( current_x > 0 ){
+        clearInterval(timer_scroll);
+        return;
+    }
+    $('#bg').css('left', current_x);
+}
+
+function moveRight(){
+    current_x = parseInt($('#bg').css('left'));
+    current_x -= move_diff;
+    if( current_x <= ((width_sized-screen_width)*-1) ){
+        clearInterval(timer_scroll);
+        return;
+    }
+    $('#bg').css('left', current_x);
+}
+
+
+if( screen_width > 500 ){
+    $('#control_left').mousemove(function(){
+        clearInterval(timer_scroll);
+        timer_scroll = setInterval(function(){
+            moveLeft();
+        }, 1);
+    });
+
+    $('#control_left').mouseout(function(){
+        clearInterval(timer_scroll);
+    });
+
+
+    $('#control_right').mousemove(function(){
+        clearInterval(timer_scroll);
+        timer_scroll = setInterval(function(){
+            moveRight();
+        }, 1);
+    });
+
+    $('#control_right').mouseout(function(){
+        clearInterval(timer_scroll);
+    });
+}else{
+
+    $('#control_left').on("taphold",function(){
+        moveLeft();
+    });
+
+    $('#control_right').on("taphold",function(){
+        moveRight();
+    });
+
+}
+
+$('#bg').css('width', width_sized);
+
+
+$("#over").on("swipeleft", function () {
+    $("#bg").animate({
+        left: '-=300'
+    }, 1000);
+});
+
+$("#over").on("swiperight", function () {
+    $("#bg").animate({
+        left: '+=300'
+    }, 1000);
+});
+
+
+
+
+$('.obj').click(function(){
+
+
+    current_obj = $(this);
+
+    //$('#player').css('background-image', "url('static/shoot.png')");
+
+    setTimeout(function(){
+        //$('#player').css('background-image', "url('static/normal2.png')");
+    }, 1000);
+
+
+
+    $('#bg').stop().animate({
+        'background-size': '110%'
+    }, 100);
+
+
+
+    $('#player').stop().css('left', 0).css('bottom',0).animate(
+    {
+        bottom: top_diff,
+        left: -50,
+        //width:600,
+        //height:671,
+        //left: -100,
+    },
+    100    
+    ,function(){
+
+        $('#player').css('left',0).css('bottom',0).css('background-image', "url('static/shoot.png')");
+
+
+        setTimeout(function(){
+
+            $('#bg').css('opacity', 0.8);
+
+            setTimeout(function(){
+                $('#bg').css('opacity', 1);
+            }, 100);
+
+            $('#sound_shoot')[0].play();
+
+            $(current_obj).fadeOut('fast');
+
+
+
+            setTimeout(function(){
+
+                $('#sound_raven')[0].play();
+
+
+                $('#player').css('bottom', top_diff).css('background-image', "url('static/normal2.png')");
+
+
+                $('#bg').stop().animate({
+                    'background-size': '100%'
+                }, 100);
+
+                $('#player').stop().animate(
+                {
+                    bottom: 0,
+                    //width: 420,
+                    //height: 494,
+                    //left:0
+                },
+                100    
+                ,function(){
+            
+                    
+                    $(current_obj).fadeIn('slow');
+
+        
+
+                });
+
+            }, 1000);
+
+
+        }, 500);
+    });
+});
+
+
+function resizeScreen(){
+    
+    screen_width = $(document).width();
+    screen_width_half = parseInt(screen_width / 2);
+    screen_height = $(document).height();
+    screen_height_half = parseInt(screen_height / 2);
+
+    height_sized = ((screen_height*100)/360);
+
+    ratio = screen_height / 360;
+
+
+    width_sized = 2700 * ratio;//((2700*screen_height)/height_sized);
+
+    current_x = 0;
+    
+    $('#bg').css('width', width_sized).css('left', 0);
+}
+
+
+resizeScreen();
+</script>
+
+</body>
+</html>
