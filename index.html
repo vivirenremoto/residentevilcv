@@ -1,41 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Resident Evil CV - Miquel Camps Orteza</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resident Evil CV - Miquel Camps Orteza</title>
+
+
+
+    <link rel="prefetch" href="static/bg.jpg" />
+    <link rel="prefetch" href="static/normal2.png" />
+    <link rel="prefetch" href="static/shoot.png" />
+    <link rel="prefetch" href="static/mp3/wind.mp3" />
+    <link rel="prefetch" href="static/mp3/shoot2.mp3" />
+    <link rel="prefetch" href="static/mp3/raven.mp3" />
+    <link rel="prefetch" href="static/mp3/walk.mp3" />
+    <link rel="prefetch" href="static/mp3/select.mp3" />
+
 </head>
 <body style="overflow:hidden;">
 
 
 <style>
-#player{background-size:100%;}
 
 
+* {
+    font-family: arial;
+    font-size:25px;
+
+    /*font-family: 'VT323', monospace;
+    text-transform: uppercase;*/
+
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                    supported by Chrome, Edge, Opera and Firefox */
+
+    /* evitar elementos seleccionados al clicar */
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    touch-action: pan-x pan-y;
+}
+
+a{color:white;text-decoration:none;}
+
+a:hover{text-decoration:underline;}
+
+h2{font-size:40px;float:left;margin-top:-7px;}
+
+ul{clear:both;}
+li{margin-bottom:10px;}
+
+#player{background-size:100%;height:494px;}
+
+#control_left, #control_right{width:25%;}
+
+#modal{width:50%;}
+
+.obj{z-index:1;}
 
 @media screen and (max-width: 1000px) {
-    #player{background-size:60% auto;}
+    #player{background-size:60% auto;height:300px;}
+    #control_left, #control_right{width:20%;}
+    #modal{width:100%;}
+    
+    .obj{z-index:3;}
 }
 </style>
 
+<div id="modal" style="color:white;z-index:4;position:fixed;top:0;height:100%;background:black;left:50%;top:0;display:none">
+    <div style="padding:30px;">
 
-<div id="control_left" style="z-index:3;position:fixed;left:0;top:0;width:30%;height:100%;"></div>
+        <button id="close" style="margin-top:-10px;cursor:pointer;float:right;background:white;border-radius:100px;width:55px;padding:5px 0;border:5px black solid;">✓</button>
 
-<div id="control_right" style="z-index:3;position:fixed;right:0;top:0;width:30%;height:100%;"></div>
+        <div id="content_house" class="pages" style="display: none;">
+            <h2>Mis cosas</h2>
+            <ul>
+                <li>
+                    <a href="https://twitter.com/vivirenremoto/" target="_blank">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://youtube.com/vivirenremoto/" target="_blank">Youtube</a>
+                </li>
+                <li>
+                    <a href="https://perfectsetup.pro/setups/mi-setup-vivirenremoto/" target="_blank">Setup</a>
+                </li>
+                <li>
+                    <a href="https://www.twitch.tv/vivirenremoto/" target="_blank">Twitch</a>
+                </li>
+                <li>
+                    <a href="/" target="_blank">Proyectos</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div id="content_blacksmith" class="pages" style="display: none;">
+            <h2>Herramientas</h2>
+            <ul>
+                <li>
+                    Visual Studio Code
+                </li>
+                <li>
+                    Firefox
+                </li>
+                <li>
+                    WinSCP
+                </li>
+                <li>
+                    Termius
+                </li>
+                <li>
+                    Trello
+                </li>
+            </ul>
+        </div>
+
+        <div id="content_university" class="pages" style="display: none;">
+            <h2>Experiencia</h2>
+            <ul>
+                <li>
+                    <a href="https://www.isocialweb.agency/" target="_blank">iSocialWeb - DEV</a>
+                </li>
+                <li>
+                    <a href="https://www.elcorteingles.es/" target="_blank">El Corte Inglés - SEO</a>
+                </li>
+                <li>
+                    <a href="https://internetrepublica.com/" target="_blank">Internet República - DEV</a>
+                </li>
+                <li>
+                    <a href="https://prensarank.com/" target="_blank">Prensarank - DEV</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/miquelcamps/" target="_blank">Ver LinkedIn</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="content_barracks" class="pages" style="">
+            <h2>Skills</h2>
+            <ul>
+                <li>
+                    Programación web (php-js)
+                </li>
+                <li>
+                    Extensiones Chrome
+                </li>
+                <li>
+                    Web Scraping
+                </li>
+                <li>
+                    APIs
+                </li>
+                <li>
+                    Git
+                </li>
+            </ul>
+        </div>
+
+
+    
+    </div>
+</div>
+
+<div id="control_left" style="opacity:0.5;z-index:3;position:fixed;left:0;top:0;height:100%;"></div>
+
+<div id="control_right" style="opacity:0.5;z-index:3;position:fixed;right:0;top:0;height:100%;"></div>
 
 
 <!--
 <div id="over" style="position:fixed;z-index:2;left:0;top:0;width:100%;height:100%;"></div>
 -->
 
-<div id="player" style="z-index:1;background-image:url('static/normal2.png');width:420px;background-repeat:no-repeat;background-position:left bottom;height:494px;position:fixed;left:0;bottom:0;"></div>
+<div id="player" style="z-index:2;background-image:url('static/normal2.png');width:420px;background-repeat:no-repeat;background-position:left bottom;position:fixed;left:0;bottom:0;"></div>
+
+
 
 <div id="bg" style="position:fixed;left:0;top:0;width:100%;height:100%;background:url('static/bg.jpg');background-size:auto 100%;background-repeat:no-repeat;">
 
-    <div class="obj" style="cursor:pointer;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;"></div>
+    <div class="obj" data-content="house" style="text-align:center;cursor:pointer;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+    
+        <!--<svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>-->
+
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:20px;">mis cosas</div>
+          
+
+    </div>
+    <div class="obj" data-content="blacksmith" style="text-align:center;cursor:pointer;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+    
+        <!--<svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+            <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z"/>
+        </svg>-->
+
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:20px;">Herramientas</div>
+          
+
+    </div>
+    <div class="obj" data-content="university" style="text-align:center;cursor:pointer;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:20px;">Experiencia</div>
+          
+        
+    </div>
+    <div class="obj" data-content="barracks" style="text-align:center;cursor:pointer;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:20px;">Skills</div>
+          
+    </div>
+
+    <div id="raven" style="z-index:1;background-image:url('static/raven.gif');background-size:cover;display:none;background-repeat:no-repeat;background-position:center center;position:absolute;"></div>
 
 </div>
+
+
 
 <audio id="sound_music" loop>
     <source src="static/mp3/wind.mp3" type="audio/mp3">
@@ -50,6 +256,14 @@
     <source src="static/mp3/raven.mp3" type="audio/mp3">
 </audio>
 
+<audio id="sound_walk" loop>
+    <source src="static/mp3/walk.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_select">
+    <source src="static/mp3/select.mp3" type="audio/mp3">
+</audio>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -62,7 +276,9 @@ var screen_width = $(document).width();
 var screen_width_half = parseInt(screen_width / 2);
 var screen_height = $(document).height();
 var screen_height_half = parseInt(screen_height / 2);
-var move_diff = 2;
+var speed;
+var target_size = 100;
+var is_shooting = false;
 
 
 var height_sized;
@@ -71,8 +287,10 @@ var width_sized;
 
 var current_x = parseInt($('#bg').css('left'));
 var timer_scroll;
+var timer_walking;
 var current_obj;
 var playing_music = false;
+var walk_diff = 400;
 
 
 $('body').click(function(){
@@ -86,31 +304,95 @@ $(window).resize(function(){
     resizeScreen();
 });
 
+function moveStop(){
+    $('#sound_walk')[0].pause();
+    clearInterval(timer_scroll);
+    clearInterval(timer_walking);
+    timer_walking = false;
+}
+
+
+function playerWalk(){
+
+    $('#player').stop().animate({
+        bottom: -30
+    }, walk_diff, function(){
+        $('#player').stop().animate({
+            bottom: 0
+        }, walk_diff); 
+    });
+
+}
 
 function moveLeft(){
-clearInterval(timer_scroll);
-        timer_scroll = setInterval(function(){
-    current_x = parseInt($('#bg').css('left'));
-    current_x += move_diff;
-    if( current_x > 0 ){
-        clearInterval(timer_scroll);
-        return;
+    if( is_shooting ) return;
+
+    $('#sound_walk')[0].play();
+
+    clearInterval(timer_scroll);
+    timer_scroll = setInterval(function(){
+        current_x = parseInt($('#bg').css('left'));
+        current_x += speed;
+        if( current_x > 0 ){
+            clearInterval(timer_scroll);
+            return;
+        }
+        $('#bg').css('left', current_x);
+
+
+
+
+
+    }, 1);
+
+
+    if( !timer_walking ){
+
+        //clearInterval(timer_walking);
+
+        playerWalk();
+
+        timer_walking = setInterval(function(){
+            playerWalk();
+        }, walk_diff*2);
+
     }
-    $('#bg').css('left', current_x);
-}, 1);
+
 }
 
 function moveRight(){
-clearInterval(timer_scroll);
-        timer_scroll = setInterval(function(){
-    current_x = parseInt($('#bg').css('left'));
-    current_x -= move_diff;
-    if( current_x <= ((width_sized-screen_width)*-1) ){
-        clearInterval(timer_scroll);
-        return;
+    if( is_shooting ) return;
+
+    $('#sound_walk')[0].play();
+
+    clearInterval(timer_scroll);
+    timer_scroll = setInterval(function(){
+        current_x = parseInt($('#bg').css('left'));
+        current_x -= speed;
+        if( current_x <= ((width_sized-screen_width)*-1) ){
+            clearInterval(timer_scroll);
+            return;
+        }
+        $('#bg').css('left', current_x);
+    
+    
+    
+    
+    }, 1);
+
+
+    if( !timer_walking ){
+
+        //clearInterval(timer_walking);
+
+        playerWalk();
+        
+        timer_walking = setInterval(function(){
+            playerWalk();
+        }, walk_diff*2);
+
     }
-    $('#bg').css('left', current_x);
-}, 1);
+
 }
 
 
@@ -120,7 +402,7 @@ if( screen_width > 1000 ){
     });
 
     $('#control_left').mouseout(function(){
-        clearInterval(timer_scroll);
+        moveStop();
     });
 
 
@@ -129,7 +411,7 @@ if( screen_width > 1000 ){
     });
 
     $('#control_right').mouseout(function(){
-        clearInterval(timer_scroll);
+        moveStop();
     });
 }else{
 
@@ -138,7 +420,7 @@ if( screen_width > 1000 ){
     });
 
     $('#control_left').on("vmouseup",function(){
-        clearInterval(timer_scroll);
+        moveStop();
     });
 
     $('#control_right').on("vmousedown",function(){
@@ -146,13 +428,24 @@ if( screen_width > 1000 ){
     });
 
     $('#control_right').on("vmouseup",function(){
-        clearInterval(timer_scroll);
+        moveStop();
     });
 
 }
 
-$('#bg').css('width', width_sized);
 
+$("#close").click(function(){
+    
+    $('#sound_select')[0].play();
+    
+    $("#modal").animate({
+        marginLeft:screen_height_half
+    }, 1000);
+
+    setTimeout(function(){
+        is_shooting = false;
+    }, 1500);
+});
 
 $("#over").on("swipeleft", function () {
     $("#bg").animate({
@@ -171,8 +464,30 @@ $("#over").on("swiperight", function () {
 
 $('.obj').click(function(){
 
+    is_shooting = true;
 
     current_obj = $(this);
+
+    
+    
+
+    $(current_obj).stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).animate({
+        width: 120,
+        height: 120,
+        marginLeft: -10,
+        marginTop: -10,
+    }, 100);
+
+
+    $(current_obj).find('svg').stop().css('width', 70).css('height', 70).animate({
+        height: 90,
+        width: 90,
+    }, 100);
+
+    $(current_obj).find('.text').stop().css('font-size', 20).css('width',200).animate({
+        fontSize: 40,
+        width: 220,
+    }, 100);
 
     //$('#player').css('background-image', "url('static/shoot.png')");
 
@@ -182,7 +497,7 @@ $('.obj').click(function(){
 
 
 
-    $('#bg').stop().animate({
+    $('#bg').stop().css('background-size', '100%').animate({
         'background-size': '110%'
     }, 100);
 
@@ -204,7 +519,7 @@ $('.obj').click(function(){
 
         setTimeout(function(){
 
-            $('#bg').css('opacity', 0.8);
+            $('#bg').css('opacity', 0.7);
 
             setTimeout(function(){
                 $('#bg').css('opacity', 1);
@@ -212,7 +527,44 @@ $('.obj').click(function(){
 
             $('#sound_shoot')[0].play();
 
-            $(current_obj).fadeOut('fast');
+
+            
+
+            $(current_obj).fadeOut('fast', function(){
+
+
+                $('#raven').stop().css('left', $(current_obj).css('left') ).css('top', $(current_obj).css('top') ).show().animate({
+                    top: target_size*-1,
+                    left: '+=' + screen_width_half//screen_width
+                }, 800, function(){
+
+
+
+
+
+
+                    $('.pages').hide();
+
+
+                    if( screen_width > 1000 ){
+                        var margin_diff = screen_width_half;
+                    }else{
+                        var margin_diff = screen_width;
+                    }
+
+                    $('#modal').stop().css('left',screen_width).show().animate({
+                        marginLeft: margin_diff * -1
+                    }, function(){
+                        
+                        $('#content_' + $(current_obj).data('content')).show();
+                        
+                    });
+                });
+
+
+            });
+
+            
 
 
 
@@ -238,8 +590,18 @@ $('.obj').click(function(){
                 100    
                 ,function(){
             
+                    setTimeout(function(){
+                        $(current_obj).find('svg').stop().css('width', 70).css('height', 70);
+                        $(current_obj).css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).fadeIn('slow');
+                        $(current_obj).find('.text').css('font-size', 20).css('width',200);
+
+                    }, 2000);
                     
-                    $(current_obj).fadeIn('slow');
+                    
+
+
+
+                    //is_shooting = false;
 
         
 
@@ -270,6 +632,27 @@ function resizeScreen(){
     current_x = 0;
     
     $('#bg').css('width', width_sized).css('left', 0);
+    $('#raven').css('width', target_size).css('height', target_size);
+
+
+    if( screen_width > 1000 ){
+        var diff_top = ((screen_height-target_size)/2);
+    }else{
+        var diff_top = 15;
+    }
+
+    $('.obj').css('top', diff_top);
+
+    $('.obj:eq(0)').css('left', screen_width_half);
+    $('.obj:eq(1)').css('left', screen_width_half*2);
+    $('.obj:eq(2)').css('left', screen_width_half*3);
+    $('.obj:eq(3)').css('left', screen_width_half*4);
+
+    if( screen_width > 1000 ){
+        speed = 2;
+    }else{
+        speed = 1.5;
+    }
 }
 
 
