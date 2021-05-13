@@ -14,6 +14,7 @@
     <link rel="prefetch" href="static/bg.jpg" />
     <link rel="prefetch" href="static/normal2.png" />
     <link rel="prefetch" href="static/shoot.png" />
+    <link rel="prefetch" href="static/shoot2.png" />
     <link rel="prefetch" href="static/mp3/wind.mp3" />
     <link rel="prefetch" href="static/mp3/shoot2.mp3" />
     <link rel="prefetch" href="static/mp3/raven2.mp3" />
@@ -84,13 +85,13 @@ a:hover{text-decoration:underline;}
 h2{font-size:40px;float:left;margin-top:-7px;font-weight:normal;
 
     background: url('static/life3.gif');
-    padding: 33px 34px;
+    padding: 33px 39px;
     padding-right:0;
     background-size: auto 200%;
     margin-top: -35px;
     background-repeat: no-repeat;
     width: 187px;
-    background-position: -36px -44px;
+    background-position: -36px -38px;
 
 
 
@@ -167,7 +168,7 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 <div id="modal" style="color:white;z-index:7;position:fixed;top:0;height:100%;background:black;left:50%;top:0;display:none">
     <div style="padding:30px;">
 
-        <button id="close" style="cursor:pointer;margin-top:-10px;float:right;background:white;border-radius:100px;width:55px;padding:5px 0;border:5px white solid;">
+        <button id="close" style="cursor:pointer;margin-top:-10px;float:right;background:white;border-radius:100px;width:55px;padding:5px 0;border:5px white solid;position:relative;z-index:1;">
         
             <svg style="margin-top:5px;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
@@ -657,7 +658,13 @@ $('.obj').click(function(){
     100    
     ,function(){
 
-        $('#player').css('left',0).css('bottom',0).css('background-image', "url('static/shoot.png')");
+        var img_shoot = 'shoot.png';
+
+        if( screen_width < 1000 && screen_width < screen_height ){
+            img_shoot = 'shoot2.png';
+        }
+
+        $('#player').css('left',0).css('bottom',0).css('background-image', "url('static/" + img_shoot + "')");
 
 
         setTimeout(function(){
