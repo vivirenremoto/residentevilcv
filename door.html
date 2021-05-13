@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REdirect</title>
+
+    
+    <link rel="prefetch" href="static/door3.gif" />
+</head>
+<body style="background:black;">
+
+
+<div id="door" style="position:fixed;top:0;left:0;height:100%;width:100%;background:black url('static/door3.gif');background-size:cover;"></div>
+    
+
+<script>
+setTimeout(function(){
+    document.location = decodeURIComponent( document.location.href.split('?url=')[1] );
+},2000);
+</script>
+
+</body>
+</html>
