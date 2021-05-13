@@ -101,12 +101,33 @@ a{cursor:pointer;}
     cursor: url(static/cursor2.png) , default!important;
 }
 
+#play {
+    cursor: pointer;
+    border: 1px #ccc solid;
+    display: none;
+    padding: 5px 0;
+    padding-top:0;
+    width: 140px;
+    background: white;
+    position: fixed;
+    left: 50%;
+    /*margin-left: -70px;*/
+    text-align: center;
+    font-family: Arial;
+    z-index: 6;
+    text-decoration: none;
+    top: 0;
+    color:black;
+}
+
+
 @media screen and (max-width: 1000px) {
     #player{background-size:60% auto;height:300px;}
     #control_left, #control_right{width:15%;}
     #modal{width:100%;}
     
     .obj{z-index:3;}
+    #play{display:none !important;}
 }
 </style>
 
@@ -115,7 +136,8 @@ a{cursor:pointer;}
 style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:6;color:black;text-decoration:none;">by
 @vivirenremoto</a>
 
-
+<a href="http://bit.ly/play_residentevil" id="play" target="_blank" style="display: inline;">
+    <span style="font-size:20px;" id="btn_cta" data-cta1="¿Nostalgia?" data-cta2="Comprar juego">¿Nostalgia?</span></a>
 
 <div id="modal" style="color:white;z-index:7;position:fixed;top:0;height:100%;background:black;left:50%;top:0;display:none">
     <div style="padding:30px;">
@@ -347,6 +369,21 @@ var timer_walking;
 var current_obj;
 var playing_music = false;
 var walk_diff = 400;
+
+
+setInterval(function () {
+
+
+    $('#btn_cta').html($('#btn_cta').data('cta2'));
+
+    setTimeout(function () {
+
+
+        $('#btn_cta').html($('#btn_cta').data('cta1'));
+
+    }, 2000);
+
+}, 4000);
 
 
 $('#sound_shoot')[0].volume = 0.4;
