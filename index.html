@@ -600,7 +600,7 @@ $('.obj').click(function(){
     
     
 
-    $(current_obj).stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).animate({
+    $('.obj').stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).animate({
         width: 120,
         height: 120,
         marginLeft: -10,
@@ -608,12 +608,12 @@ $('.obj').click(function(){
     }, 200);
 
 
-    $(current_obj).find('svg').stop().css('width', 70).css('height', 70).animate({
+    $('.obj').find('svg').stop().css('width', 70).css('height', 70).animate({
         height: 90,
         width: 90,
     }, 100);
 
-    $(current_obj).find('.text').stop().css('font-size', 27).css('width',200).animate({
+    $('.obj').find('.text').stop().css('font-size', 27).css('width',200).animate({
         fontSize: 40,
         width: 220,
     }, 100);
@@ -662,7 +662,7 @@ $('.obj').click(function(){
             
 
 
-            $(current_obj).fadeOut('fast', function(){
+            $('.obj').fadeOut('fast', function(){
 
                 
                 
@@ -725,9 +725,9 @@ $('.obj').click(function(){
                 ,function(){
             
                     setTimeout(function(){
-                        $(current_obj).find('svg').stop().css('width', 70).css('height', 70);
-                        $(current_obj).css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).fadeIn('slow');
-                        $(current_obj).find('.text').css('font-size', 27).css('width',200);
+                        $('.obj').find('svg').stop().css('width', 70).css('height', 70);
+                        $('.obj').css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).fadeIn('slow');
+                        $('.obj').find('.text').css('font-size', 27).css('width',200);
 
                     }, 2000);
                     
