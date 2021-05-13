@@ -11,8 +11,15 @@
 </head>
 <body style="background:black;">
 
+<style>
+#door{position:fixed;top:0;left:0;height:100%;width:100%;background:black url('static/door3.gif');background-position:center center;background-size:100%;background-repeat:no-repeat;}
 
-<div id="door" style="position:fixed;top:0;left:0;height:100%;width:100%;background:black url('static/door3.gif');background-position:center center;background-size:100%;background-repeat:no-repeat;"></div>
+@media screen and (max-width: 1000px) {
+    #door{background-size:200%;}
+}
+</style>
+
+<div id="door"></div>
     
 
 <script>
