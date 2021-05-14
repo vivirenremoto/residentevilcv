@@ -776,8 +776,9 @@ $('.obj').click(function(){
         $('#video')[0].play();
 
         setTimeout(function(){
-            $('#video').hide();
-            $('#ending button').fadeIn('slow');
+            $('#video').fadeOut('fast', function(){
+                $('#ending button').fadeIn('slow');
+            });
         }, 1000*16);
         return;
     }
