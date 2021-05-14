@@ -1262,7 +1262,14 @@ if( is_game ){
     $('.twitter:first').hide();
     $('.text').hide();
     $('#play').hide();
-    speed = 5;
+
+    if( screen_width > 1000 ){
+        speed = 5;
+    }else{
+        speed = 4;
+    }
+
+    
     delay_shoot = 100;
 
     $('.obj').hide();
