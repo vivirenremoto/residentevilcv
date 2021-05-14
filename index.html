@@ -928,12 +928,12 @@ function resizeScreen(){
     $('.zombie').css('width', zombie_width_min);
 
 
-
+    // movil portait ?
     if( screen_width < screen_height ){
-        $('.obj:eq(0)').css('left', screen_width_half-(target_size/2));
-        $('.obj:eq(1)').css('left', screen_width*2);
-        $('.obj:eq(2)').css('left', screen_width*4);
-        $('.obj:eq(3)').css('left', screen_width*6);
+        $('.obj:eq(0)').css('left', screen_width);
+        $('.obj:eq(1)').css('left', screen_width*3);
+        $('.obj:eq(2)').css('left', screen_width*5);
+        $('.obj:eq(3)').css('left', screen_width*7);
     }else{
         $('.obj:eq(0)').css('left', screen_width_half);
         $('.obj:eq(1)').css('left', screen_width_half+(screen_width_half*2));
