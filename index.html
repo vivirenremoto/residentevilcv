@@ -14,6 +14,8 @@
     <link rel="prefetch" href="static/door3.gif" />
     <link rel="prefetch" href="static/life3.gif" />
     <link rel="prefetch" href="static/bg.jpg" />
+    <link rel="prefetch" href="static/zombie3.png" />
+    <link rel="prefetch" href="static/chainsaw.png" />
     <link rel="prefetch" href="static/normal2.png" />
     <link rel="prefetch" href="static/shoot.png" />
     <link rel="prefetch" href="static/shoot2.png" />
@@ -132,7 +134,7 @@ body{
 
 a{cursor:pointer;}
 
-.obj, #modal{
+.obj, #modal, #ending{
     cursor: url(static/cursor2.png) , default!important;
 }
 
@@ -163,6 +165,13 @@ a{cursor:pointer;}
 
 .blood{margin-top:-80px;margin-left:-70px;}
 
+
+#video{width:800px;height:438px;}
+
+
+
+.chainsaw{margin-top:-70px;}
+
 @media screen and (max-width: 1000px) {
     #player{background-size:60% auto;height:300px;}
     #control_left, #control_right{width:15%;}
@@ -178,6 +187,12 @@ a{cursor:pointer;}
 
 
     .blood{margin-top:-100px;margin-left:-80px;}
+
+        
+    #video{width:400px;height:219px;}
+
+    
+    .chainsaw{margin-top:-30px;}
 }
 </style>
 
@@ -188,6 +203,25 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
 <a href="http://bit.ly/play_residentevil" id="play" target="_blank" style="display: inline;">
     <span style="font-size:20px;" id="btn_cta" data-cta1="¿Nostalgia?" data-cta2="Comprar juego">¿Nostalgia?</span></a>
+
+
+
+<div id="ending" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:black;z-index:999;">
+
+
+    <div style="display: flex;align-items: center;justify-content: center;height:100%;width:100%;">
+
+
+        <video width="320" height="240" id="video" style="max-width:100%">
+            <source src="static/ending.mp4" type="video/mp4">
+        </video>
+
+
+        <button onclick="document.location.reload()" style="text-align:center;display:none;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">VOLVER A EMPEZAR</button>
+        
+    </div>
+
+</div>
 
 <div id="modal" style="color:white;z-index:7;position:fixed;top:0;height:100%;background:black;left:50%;top:0;display:none">
     <div class="div_padding">
@@ -365,6 +399,23 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
     </div>
 
+
+
+    <div class="obj" data-content="ending" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+
+        
+        
+
+        <div class="zombie chainsaw" style="background:url('static/chainsaw.png');z-index: 1;height: 630px;margin-left: 10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
+
+
+        
+
+
+    </div>
+
+
+
     <div id="raven" style="z-index:1;background-image:url('static/raven.gif');background-size:cover;display:none;background-repeat:no-repeat;background-position:center center;position:absolute;"></div>
 
 </div>
@@ -458,8 +509,11 @@ $('#sound_shoot')[0].volume = 0.4;
 $('body').click(function(){
     if( !playing_music ){
         playing_music = true;
-        $('#sound_music')[0].play();
-        $('#sound_zombie')[0].play();
+
+        if( $('#ending:visible').length == 0 ){
+            $('#sound_music')[0].play();
+            $('#sound_zombie')[0].play();
+        }
     }
 });
 
@@ -547,8 +601,11 @@ function moveRight(){
     timer_scroll = setInterval(function(){
         current_x = parseInt($('#bg').css('left'));
         current_x -= speed;
-        if( current_x <= ((width_sized-screen_width)*-1) ){
+        if( current_x < ((width_sized-screen_width)*-1) ){
             clearInterval(timer_scroll);
+
+
+
             return;
         }
         $('#bg').css('left', current_x);
@@ -701,6 +758,8 @@ $("#over").on("swiperight", function () {
 });
 
 
+      
+
 
 
 $('.obj').click(function(){
@@ -709,6 +768,19 @@ $('.obj').click(function(){
     current_obj = $(this);
 
     
+
+    if( $(this).data('content') == 'ending' ){
+        $('#sound_music')[0].pause();
+        $('#sound_zombie')[0].pause();
+        $('#ending').show();
+        $('#video')[0].play();
+
+        setTimeout(function(){
+            $('#video').hide();
+            $('#ending button').fadeIn('slow');
+        }, 1000*16);
+        return;
+    }
     
 
     $('.obj').stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).animate({
@@ -949,19 +1021,25 @@ function resizeScreen(){
         $('.obj:eq(1)').css('left', screen_width*3);
         $('.obj:eq(2)').css('left', screen_width*5);
         $('.obj:eq(3)').css('left', screen_width*7);
+        $('.obj:eq(4)').css('left', screen_width*8);
     }else{
         $('.obj:eq(0)').css('left', screen_width_half);
         $('.obj:eq(1)').css('left', screen_width_half+(screen_width_half*2));
         $('.obj:eq(2)').css('left', screen_width_half+(screen_width_half*3));
         $('.obj:eq(3)').css('left', screen_width_half+(screen_width_half*4));
+        $('.obj:eq(4)').css('left', screen_width_half+(screen_width_half*5));
     }
 
 
 
     if( screen_width > 1000 ){
-        speed = 1.9;
+        speed = 2;
     }else{
         speed = 1.5;
+    }
+
+    if( document.location.href.indexOf('test') > -1 ){
+        speed = 4;
     }
 }
 
