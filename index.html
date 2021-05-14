@@ -168,7 +168,7 @@ a{cursor:pointer;}
 
 #video{width:800px;height:438px;}
 
-
+#my_score{font-size:60px;padding:10px 40px 40px 40px;margin-right:-35px;margin-bottom:-35px;background:red;color:white;position:fixed;right:0;bottom:0;border-radius: 40px;background-clip: padding-box;width:100px;background-image:url('static/cursor2.png');background-repeat:no-repeat;background-position:20px 25px;}
 
 .chainsaw{margin-top:-70px;}
 
@@ -193,6 +193,9 @@ a{cursor:pointer;}
 
     
     .chainsaw{margin-top:-30px;}
+    
+    #my_score{font-size:50px;padding:5px 30px 30px 30px;margin-right:-35px;margin-bottom:-30px;background-position:20px 15px;}
+
 }
 </style>
 
@@ -449,7 +452,7 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 <div id="stats" style="display:none;width:300px;margin-left:-150px;left:50%;top:0;position:fixed;z-index:2;text-align:center">
 
     <div id="time" style="font-size:60px;">0:30</div>
-    <div class="score" style="font-size:60px;padding:10px 40px 40px 40px;margin-right:-35px;margin-bottom:-35px;background:red;color:white;position:fixed;right:0;bottom:0;border-radius: 40px;background-clip: padding-box;width:100px;background-image:url('static/cursor2.png');background-repeat:no-repeat;background-position:20px 25px;">0</div>
+    <div class="score" id="my_score">0</div>
     
 
 </div>
