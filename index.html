@@ -597,6 +597,19 @@ if( screen_width > 1000 ){
         is_shooting = true;
     });
 
+    $("body").keydown(function (e) {
+        if (e.keyCode == 37) {
+            moveLeft();
+        } else if (e.keyCode == 39) {
+            moveRight();
+        }
+    });
+
+
+    $("body").keyup(function (e) {
+        moveStop();
+    });
+
 }else{
 
     $('#control_left').on("vmousedown",function(){
@@ -951,6 +964,7 @@ function resizeScreen(){
         speed = 1.5;
     }
 }
+
 
 
 resizeScreen();
