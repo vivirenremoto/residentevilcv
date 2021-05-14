@@ -226,6 +226,11 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
             <br>
         
             <button onclick="share();" style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">COMPARTIR</button>
+
+            <br>
+
+            <button onclick="goCV();" style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">VOLVER AL CV</button>
+            
         </div>
 
     </div>
@@ -1238,6 +1243,11 @@ function share() {
 
 function goGame(){
     document.location = document.location.href.split('?')[0] + '?game';
+}
+
+
+function goCV(){
+    document.location = document.location.href.split('?')[0];
 }
 
 if( is_game ){
