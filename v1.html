@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 
 
-    <link rel="prefetch" href="static/blood.gif" />
+    <link rel="prefetch" href="static/raven.gif" />
     <link rel="prefetch" href="static/door3.gif" />
     <link rel="prefetch" href="static/life3.gif" />
     <link rel="prefetch" href="static/bg.jpg" />
@@ -23,7 +24,6 @@
     <link rel="prefetch" href="static/mp3/select2.mp3" />
     <link rel="prefetch" href="static/mp3/door2.mp3" />
     <link rel="prefetch" href="static/mp3/imbecil.mp3" />
-    <link rel="prefetch" href="static/mp3/zombie.mp3" />
 
     <meta property="og:image" content="https://vivirenremoto.github.io/residentevilcv/static/social.png">
     <meta property="og:image:secure_url" content="https://vivirenremoto.github.io/residentevilcv/static/social.png">
@@ -110,15 +110,9 @@ li{margin-bottom:10px;}
 
 #modal a:hover{color:red;}
 
-.obj{z-index:1;/*border:1px black solid;*/}
+.obj{z-index:1;border:1px black solid;}
 
-/*
-.obj:hover .zombie{
-    filter: drop-shadow(2px 4px 8px red);
-}
-*/
-
- #close:hover{
+.obj:hover, #close:hover{
     -webkit-box-shadow: 0 0 35px red;
     -moz-box-shadow: 0 0 35px red;
     box-shadow: 0 0 35px red;
@@ -292,61 +286,52 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
 <div id="bg" style="position:fixed;left:0;top:0;width:100%;height:100%;background:url('static/bg.jpg');background-size:auto 100%;background-repeat:no-repeat;">
 
-    <div class="obj" data-content="house" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
-
-
-        <div class="blood" style="display:none;background:url('static/blood.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
-
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
-
-
-
-        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-40px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">mis cosas</div>
-          
-
-    </div>
-    <div class="obj" data-content="barracks" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+    <div class="obj" data-content="house" style="text-align:center;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
     
+        <!--<svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+        </svg>-->
 
-        <div class="blood" style="display:none;background:url('static/blood.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
 
-
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
-
-
-
-        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-40px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">skills</div>
-            
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">mis cosas</div>
+          
 
     </div>
-    <div class="obj" data-content="university" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+    <div class="obj" data-content="barracks" style="text-align:center;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+    
+        <!--<svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-tools" viewBox="0 0 16 16">
+            <path d="M1 0 0 1l2.2 3.081a1 1 0 0 0 .815.419h.07a1 1 0 0 1 .708.293l2.675 2.675-2.617 2.654A3.003 3.003 0 0 0 0 13a3 3 0 1 0 5.878-.851l2.654-2.617.968.968-.305.914a1 1 0 0 0 .242 1.023l3.356 3.356a1 1 0 0 0 1.414 0l1.586-1.586a1 1 0 0 0 0-1.414l-3.356-3.356a1 1 0 0 0-1.023-.242L10.5 9.5l-.96-.96 2.68-2.643A3.005 3.005 0 0 0 16 3c0-.269-.035-.53-.102-.777l-2.14 2.141L12 4l-.364-1.757L13.777.102a3 3 0 0 0-3.675 3.68L7.462 6.46 4.793 3.793a1 1 0 0 1-.293-.707v-.071a1 1 0 0 0-.419-.814L1 0zm9.646 10.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708zM3 11l.471.242.529.026.287.445.445.287.026.529L5 13l-.242.471-.026.529-.445.287-.287.445-.529.026L3 15l-.471-.242L2 14.732l-.287-.445L1.268 14l-.026-.529L1 13l.242-.471.026-.529.445-.287.287-.445.529-.026L3 11z"/>
+        </svg>-->
 
-        <div class="blood" style="display:none;background:url('static/blood.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
 
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">Skills</div>
+          
 
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
+    </div>
+    <div class="obj" data-content="university" style="text-align:center;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
 
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
 
-
-        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-40px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">Experiencia</div>
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">Experiencia</div>
           
         
     </div>
-    <div class="obj" data-content="blacksmith" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+    <div class="obj" data-content="blacksmith" style="text-align:center;background:red;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
 
-        
-        <div class="blood" style="display:none;background:url('static/blood.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
+        <svg style="margin-top:15px;" xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+            <path d="m10.277 5.433-4.031.505-.145.67.794.145c.516.123.619.309.505.824L6.101 13.68c-.34 1.578.186 2.32 1.423 2.32.959 0 2.072-.443 2.577-1.052l.155-.732c-.35.31-.866.434-1.206.434-.485 0-.66-.34-.536-.939l1.763-8.278zm.122-3.673a1.76 1.76 0 1 1-3.52 0 1.76 1.76 0 0 1 3.52 0z"/>
+        </svg>
 
-
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
-
-
-
-        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-40px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">Herramientas</div>
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">Herramientas</div>
           
-        
-
-
     </div>
 
     <div id="raven" style="z-index:1;background-image:url('static/raven.gif');background-size:cover;display:none;background-repeat:no-repeat;background-position:center center;position:absolute;"></div>
@@ -382,10 +367,6 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
 <audio id="sound_imbecil">
     <source src="static/mp3/imbecil.mp3" type="audio/mp3">
-</audio>
-
-<audio id="sound_zombie" loop>
-    <source src="static/mp3/zombie.mp3" type="audio/mp3">
 </audio>
 
 
@@ -439,7 +420,6 @@ $('body').click(function(){
     if( !playing_music ){
         playing_music = true;
         $('#sound_music')[0].play();
-        $('#sound_zombie')[0].play();
     }
 });
 
@@ -571,12 +551,6 @@ if( screen_width > 1000 ){
     $('#control_right').mouseout(function(){
         moveStop();
     });
-
-    
-    $('.obj').mousedown(function(){
-        is_shooting = true;
-    });
-
 }else{
 
     $('#control_left').on("vmousedown",function(){
@@ -595,11 +569,6 @@ if( screen_width > 1000 ){
         moveStop();
     });
 
-
-    $('.obj').on('vmousedown', function(){
-        is_shooting = true;
-    });
-
 }
 
 
@@ -609,10 +578,7 @@ $("#close").click(function(){
 
     $("#modal").animate({
         marginLeft:screen_height_half
-    }, 1000, function(){
-        
-        $('#sound_zombie')[0].play();
-    });
+    }, 1000);
 
 
     $('#player').css('bottom', top_diff).css('background-image', "url('static/normal2.png')");
@@ -625,31 +591,6 @@ $("#close").click(function(){
     setTimeout(function(){
         is_shooting = false;
     }, 1500);
-
-    $('.obj').find('.zombie').stop().animate({
-        width: 250,
-        height: 630
-    }, 200);
-
-
-    /*
-    $('.obj').find('svg').stop().animate({
-        width: 70,
-        height: 70,
-    }, 200);
-    */
-
-    $('.obj').find('.text').stop().animate({
-        fontSize: 27,
-        width: 200,
-    }, 200);
-
-
-    $('.obj').fadeIn('slow');
-    //$('.obj').css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).fadeIn('slow');
-    //$('.obj').find('.text').css('font-size', 27).css('width',200);
-
-
 });
 
 $("#over").on("swipeleft", function () {
@@ -669,6 +610,7 @@ $("#over").on("swiperight", function () {
 
 $('.obj').click(function(){
 
+    is_shooting = true;
 
     current_obj = $(this);
 
@@ -676,32 +618,22 @@ $('.obj').click(function(){
     
 
     $('.obj').stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).animate({
-        //width: 120,
-        //height: 120,
-        //marginLeft: -10,
-        //marginTop: -10,
+        width: 120,
+        height: 120,
+        marginLeft: -10,
+        marginTop: -10,
     }, 200);
 
-    /*
 
     $('.obj').find('svg').stop().css('width', 70).css('height', 70).animate({
         height: 90,
         width: 90,
     }, 100);
-    */
 
     $('.obj').find('.text').stop().css('font-size', 27).css('width',200).animate({
         fontSize: 40,
         width: 220,
     }, 100);
-
-
-
-    $('.obj').find('.zombie').stop().css('margin-left', 10).css('width',250).css('height',630).animate({
-        width: 300,
-        height: 680
-    }, 100);
-
 
     //$('#player').css('background-image', "url('static/shoot.png')");
 
@@ -714,8 +646,6 @@ $('.obj').click(function(){
     $('#bg').stop().css('background-size', '100%').animate({
         'background-size': '120%'
     }, 100);
-
-
 
 
 
@@ -748,21 +678,16 @@ $('.obj').click(function(){
             }, 100);
 
             $('#sound_shoot')[0].play();
-            $('#sound_zombie')[0].pause();
 
 
             $('#sound_raven')[0].play();
    
             
-            $('.obj').fadeOut('slow');
 
-            //$('.obj').fadeOut('fast', function(){
+
+            $('.obj').fadeOut('fast', function(){
 
                 
-                $(current_obj).find('.blood').show();
-                setTimeout(function(){
-                    $(current_obj).find('.blood').hide();
-                }, 300);
                 
 
                 $('#raven').stop().css('left', $(current_obj).css('left') ).css('top', $(current_obj).css('top') ).show().animate({
@@ -794,7 +719,7 @@ $('.obj').click(function(){
                 });
 
 
-            //});
+            });
 
             
 
@@ -822,7 +747,12 @@ $('.obj').click(function(){
                 100    
                 ,function(){
             
-         
+                    setTimeout(function(){
+                        $('.obj').find('svg').stop().css('width', 70).css('height', 70);
+                        $('.obj').css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).fadeIn('slow');
+                        $('.obj').find('.text').css('font-size', 27).css('width',200);
+
+                    }, 2000);
                     
                     
 
@@ -833,9 +763,6 @@ $('.obj').click(function(){
         
 
                 });
-
-
-                
 
             }, 1000);
 
@@ -869,19 +796,13 @@ function resizeScreen(){
         var diff_top = ((screen_height-target_size)/2);
     }else{
 
-
-        var diff_top = ((screen_height-target_size)/3);
-
-        /*
-
         if( screen_width < screen_height ){
             var diff_top = ((screen_height-target_size)/4);
 
         }else{
-            var diff_top = 15;//15;
+            var diff_top = 15;
 
         }
-        */
     }
 
     $('.obj').css('top', diff_top);
