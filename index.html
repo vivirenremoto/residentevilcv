@@ -136,6 +136,7 @@ a{cursor:pointer;}
     cursor: url(static/cursor2.png) , default!important;
 }
 
+
 #play {
     cursor: pointer;
     border: 1px #ccc solid;
@@ -160,6 +161,8 @@ a{cursor:pointer;}
     padding:30px;
 }
 
+.blood{margin-top:-80px;margin-left:-70px;}
+
 @media screen and (max-width: 1000px) {
     #player{background-size:60% auto;height:300px;}
     #control_left, #control_right{width:15%;}
@@ -172,6 +175,9 @@ a{cursor:pointer;}
     #modal .div_padding{
         padding-top:60px;
     }
+
+
+    .blood{margin-top:-100px;margin-left:-80px;}
 }
 </style>
 
@@ -305,9 +311,9 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
     <div class="obj" data-content="house" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
 
 
-        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
 
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
 
 
 
@@ -318,10 +324,10 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
     <div class="obj" data-content="barracks" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
     
 
-        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
 
 
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
 
 
 
@@ -331,10 +337,10 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
     </div>
     <div class="obj" data-content="university" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
 
-        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
 
 
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
 
 
 
@@ -345,10 +351,10 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
     <div class="obj" data-content="blacksmith" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
 
         
-        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;margin-left:-70px;margin-top:-80px;position:absolute;z-index:2;"></div>
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
 
 
-        <div class="zombie" style="background:url('static/zombie3.png');width: 250px;z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;"></div>
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
 
 
 
@@ -414,7 +420,11 @@ var screen_height_half = parseInt(screen_height / 2);
 var speed;
 var target_size = 100;
 var is_shooting = false;
+var zombie_width_min;
+var zombie_width_max;
 
+
+    
 
 var height_sized;
 var ratio;
@@ -637,7 +647,7 @@ $("#close").click(function(){
     }, 1500);
 
     $('.obj').find('.zombie').stop().animate({
-        width: 250,
+        width: zombie_width_min,
         height: 630
     }, 200);
 
@@ -709,8 +719,8 @@ $('.obj').click(function(){
 
 
 
-    $('.obj').find('.zombie').stop().css('margin-left', 10).css('width',250).css('height',630).animate({
-        width: 300,
+    $('.obj').find('.zombie').stop().css('margin-left', 10).css('width',zombie_width_min).css('height',630).animate({
+        width: zombie_width_max,
         height: 680
     }, 100);
 
@@ -729,6 +739,8 @@ $('.obj').click(function(){
 
 
 
+    $('.obj').hide();
+    $(current_obj).show();
 
 
     $('#player').stop().css('left', 0).css('bottom',0).animate(
@@ -750,6 +762,7 @@ $('.obj').click(function(){
 
         $('#player').css('left',0).css('bottom',0).css('background-image', "url('static/" + img_shoot + "')");
 
+        
 
         setTimeout(function(){
 
@@ -761,6 +774,7 @@ $('.obj').click(function(){
 
             $('#sound_shoot')[0].play();
             $('#sound_zombie')[0].pause();
+
 
 
             $('#sound_raven')[0].play();
@@ -879,7 +893,20 @@ function resizeScreen(){
 
     if( screen_width > 1000 ){
         var diff_top = ((screen_height-target_size)/2);
+
+
+        zombie_width_min = 250;
+        zombie_width_max = 300;
+
+
+
+
+
     }else{
+
+
+        zombie_width_min = 180;
+        zombie_width_max = 230;
 
 
         var diff_top = ((screen_height-target_size)/3);
@@ -897,6 +924,8 @@ function resizeScreen(){
     }
 
     $('.obj').css('top', diff_top);
+
+    $('.zombie').css('width', zombie_width_min);
 
 
 
