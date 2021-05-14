@@ -635,7 +635,9 @@ $("#close").click(function(){
     });
 
 
-    $('#player').stop().css('background-image', "url('static/normal2.png')").animate({bottom:0}, 200);
+
+
+    $('#player').stop().css('left',-50).css('bottom', top_diff).css('background-image', "url('static/normal2.png')").animate({bottom:0,left:0}, 100);
 
 
     $('#bg').stop().animate({
@@ -727,9 +729,9 @@ $('.obj').click(function(){
 
     //$('#player').css('background-image', "url('static/shoot.png')");
 
-    setTimeout(function(){
+    //setTimeout(function(){
         //$('#player').css('background-image', "url('static/normal2.png')");
-    }, 1000);
+    //}, 1000);
 
 
 
