@@ -635,7 +635,7 @@ $("#close").click(function(){
     });
 
 
-    $('#player').css('bottom', top_diff).css('background-image', "url('static/normal2.png')");
+    $('#player').stop().css('background-image', "url('static/normal2.png')").animate({bottom:0}, 200);
 
 
     $('#bg').stop().animate({
