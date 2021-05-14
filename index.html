@@ -205,6 +205,31 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
     <span style="font-size:20px;" id="btn_cta" data-cta1="¿Nostalgia?" data-cta2="Comprar juego">¿Nostalgia?</span></a>
 
 
+<div onclick="goGame()" id="btn_game" style="cursor:pointer;display:none;z-index:5;background:red;width:66px;text-align:center;padding:15px 0;border-radius:100px;position:absolute;left:20px;top:20px;"><img src="static/cursor2.png" width="30" height="30"></div>
+
+
+<div id="result" style="cursor:default;display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:black;z-index:999;">
+
+    <div style="text-align:center;color:white;display: flex;align-items: center;justify-content: center;height:100%;width:100%;">
+
+        <div style="font-size:50px;">
+            Tu puntuación
+            <br>
+            <span class="score" style="font-size:100px;color:red">0</span>
+            <br>
+        
+            <button onclick="goGame();" style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">REPETIR</button>
+            
+            <br>
+        
+            <button onclick="share();" style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">COMPARTIR</button>
+        </div>
+
+    </div>
+
+</div>
+
+
 
 <div id="ending" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:black;z-index:999;">
 
@@ -421,6 +446,15 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 </div>
 
 
+<div id="stats" style="display:none;width:300px;margin-left:-150px;left:50%;top:0;position:fixed;z-index:2;text-align:center">
+
+    <div id="time" style="font-size:60px;">0:30</div>
+    <div class="score" style="font-size:60px;padding:10px 40px 40px 40px;margin-right:-35px;margin-bottom:-35px;background:red;color:white;position:fixed;right:0;bottom:0;border-radius: 40px;background-clip: padding-box;width:100px;background-image:url('static/cursor2.png');background-repeat:no-repeat;background-position:20px 25px;">0</div>
+    
+
+</div>
+
+
 
 <audio id="sound_music" loop>
     <source src="static/mp3/wind.mp3" type="audio/mp3">
@@ -463,6 +497,14 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
 
 <script>
+    
+var time_left = 30;
+var timer_time;
+var best_score = 100;
+var max_stars = 5;
+var count_items = 0;
+
+
 var top_diff = -85;
 var screen_width = $(document).width();
 var screen_width_half = parseInt(screen_width / 2);
@@ -471,8 +513,10 @@ var screen_height_half = parseInt(screen_height / 2);
 var speed;
 var target_size = 100;
 var is_shooting = false;
+var is_zoom = false;
 var zombie_width_min;
 var zombie_width_max;
+var is_game = document.location.href.indexOf('game') > - 1;
 
 
     
@@ -487,6 +531,7 @@ var timer_walking;
 var current_obj;
 var playing_music = false;
 var walk_diff = 400;
+var delay_shoot = 500;
 
 
 setInterval(function () {
@@ -557,7 +602,7 @@ function playerWalk(){
 }
 
 function moveLeft(){
-    if( is_shooting ) return;
+    if( is_shooting || $('#modal:visible').length == 1 ) return;
 
     $('#sound_walk')[0].play();
 
@@ -593,7 +638,7 @@ function moveLeft(){
 }
 
 function moveRight(){
-    if( is_shooting ) return;
+    if( is_shooting || $('#modal:visible').length == 1 ) return;
 
     $('#sound_walk')[0].play();
 
@@ -692,27 +737,30 @@ if( screen_width > 1000 ){
 
 }
 
+function closeModal(){
 
-$("#close").click(function(){
-    
-    $('#sound_select')[0].play();
+    is_zoom = false;
 
-    $("#modal").animate({
-        marginLeft:screen_height_half
-    }, 1000, function(){
-        
-        $('#sound_zombie')[0].play();
-    });
+    if( !is_game ){
+        $('#sound_select')[0].play();
 
 
+        $("#modal").animate({
+            marginLeft:screen_height_half
+        }, 1000, function(){
+            
+            $('#sound_zombie')[0].play();
+        });
+    }
 
 
-    $('#player').stop().css('left',-50).css('bottom', top_diff).css('background-image', "url('static/normal2.png')").animate({bottom:0,left:0}, 100);
+
+    $('#player').stop().css('left',-50).css('bottom', top_diff).css('background-image', "url('static/normal2.png')").animate({bottom:0,left:0}, delay_shoot);
 
 
     $('#bg').stop().animate({
         'background-size': '100%'
-    }, 200);
+    }, delay_shoot*2);
 
     setTimeout(function(){
         is_shooting = false;
@@ -721,7 +769,7 @@ $("#close").click(function(){
     $('.obj').find('.zombie').stop().animate({
         width: zombie_width_min,
         height: 630
-    }, 200);
+    }, delay_shoot*2);
 
 
     /*
@@ -738,9 +786,23 @@ $("#close").click(function(){
     }, 200);
 
 
-    $('.obj').fadeIn('slow');
+    $('.obj').fadeIn('slow', function(){
+
+        if( is_game ){
+            $('.obj:eq(4)').hide();
+        }
+
+    });
+
+
+
     //$('.obj').css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).fadeIn('slow');
     //$('.obj').find('.text').css('font-size', 27).css('width',200);
+}
+
+$("#close").click(function(){
+
+    closeModal();
 
 
 });
@@ -764,10 +826,14 @@ $("#over").on("swiperight", function () {
 
 $('.obj').click(function(){
 
+    if( is_zoom ){
+        return;
+    }
+
+    is_zoom = true;
 
     current_obj = $(this);
 
-    
 
     if( $(this).data('content') == 'ending' ){
         $('#sound_music')[0].pause();
@@ -784,20 +850,22 @@ $('.obj').click(function(){
     }
     
 
-    $('.obj').stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).animate({
-        //width: 120,
-        //height: 120,
-        //marginLeft: -10,
-        //marginTop: -10,
-    }, 200);
+    
+    var img_shoot = 'shoot.png';
 
-    /*
+    if( screen_width < 1000 && screen_width < screen_height ){
+        img_shoot = 'shoot2.png';
+    }
 
-    $('.obj').find('svg').stop().css('width', 70).css('height', 70).animate({
-        height: 90,
-        width: 90,
-    }, 100);
-    */
+
+
+
+
+
+
+    $('.obj').stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0);
+
+
 
     $('.obj').find('.text').stop().css('font-size', 27).css('width',200).animate({
         fontSize: 40,
@@ -826,9 +894,10 @@ $('.obj').click(function(){
     }, 100);
 
 
-
-    $('.obj').hide();
-    $(current_obj).show();
+    if( !is_game ){
+        $('.obj').hide();
+        $(current_obj).show();
+    }
 
 
     $('#player').stop().css('left', 0).css('bottom',0).animate(
@@ -842,11 +911,6 @@ $('.obj').click(function(){
     100    
     ,function(){
 
-        var img_shoot = 'shoot.png';
-
-        if( screen_width < 1000 && screen_width < screen_height ){
-            img_shoot = 'shoot2.png';
-        }
 
         $('#player').css('left',0).css('bottom',0).css('background-image', "url('static/" + img_shoot + "')");
 
@@ -861,23 +925,54 @@ $('.obj').click(function(){
             }, 100);
 
             $('#sound_shoot')[0].play();
-            $('#sound_zombie')[0].pause();
 
 
-
-            $('#sound_raven')[0].play();
-   
+            if( !is_game ){
+                $('#sound_raven')[0].play();
+                $('#sound_zombie')[0].pause();
+            }
             
-            $('.obj').fadeOut('slow');
+            
 
             //$('.obj').fadeOut('fast', function(){
 
+            
+            $(current_obj).find('.blood').show();
+            setTimeout(function(){
+                $(current_obj).find('.blood').hide();
+
+
+                if( is_game ){
+
+                    count_items++;
+                    $('.score').html(count_items);
+
+                    $(current_obj).hide();
+
+                    is_shooting = false;
+
+                    randomZombies();
+
+                    closeModal();
+                }
+
+            }, 300);
+
+
+
+            if( is_game ){
                 
-                $(current_obj).find('.blood').show();
-                setTimeout(function(){
-                    $(current_obj).find('.blood').hide();
-                }, 300);
-                
+                return;
+            }else{
+
+                $('.obj').fadeOut('slow');
+            }
+                        
+
+
+
+
+
 
                 $('#raven').stop().css('left', $(current_obj).css('left') ).css('top', $(current_obj).css('top') ).show().animate({
                     top: target_size*-1,
@@ -954,7 +1049,7 @@ $('.obj').click(function(){
             }, 1000);
 
 
-        }, 500);
+        }, delay_shoot);
     });
 });
 
@@ -1032,18 +1127,145 @@ function resizeScreen(){
     }
 
 
-
-    if( screen_width > 1000 ){
-        speed = 2;
-    }else{
-        speed = 1.5;
+    if( !is_game ){
+        if( screen_width > 1000 ){
+            speed = 2;
+        }else{
+            speed = 1.5;
+        }
     }
 
+    
+
     if( document.location.href.indexOf('test') > -1 ){
+        time_left = 1;
         speed = 4;
     }
 }
 
+
+
+function randomNumber(min, max) {
+    if (min > max) {
+        let temp = max;
+        max = min;
+        min = temp;
+    }
+
+    if (min <= 0) {
+        return Math.floor(Math.random() * (max + Math.abs(min) + 1)) + min;
+    } else {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+}
+
+function randomZombies(){
+    $('.obj:hidden').each(function(obj, key){
+        if( key != 4 ){
+
+            var third_diff = ((width_sized*30)/100);
+
+            var quarter_zone = width_sized/20;
+            var quarter_rand = randomNumber(2,18);
+
+
+
+
+
+            var start_x = quarter_rand * quarter_zone;
+            var end_x = start_x + quarter_zone;
+
+            var pos_x =  randomNumber(start_x, end_x);
+            $(this).css('left', pos_x).fadeIn('fast');
+        }
+    });
+    
+
+}
+
+
+function format_time(time) {
+    // Hours, minutes and seconds
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+}
+
+
+function endGame(){
+    clearInterval(timer_time);
+    $('#result').show();
+    
+    setTimeout(function(){
+        $('#result button').fadeIn('slow');
+    }, 2000);
+    
+}
+
+function share() {
+
+
+    var share_title = document.title;
+    var share_url = document.location.href;
+
+    if (count_items) {
+        share_title += ' 👊 ¡Supera mi puntuación! 🎯' + count_items;
+    }
+
+    if (navigator.share) {
+        navigator.share({
+            title: share_title,
+            url: share_url
+        });
+
+    } else {
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(share_title) + '&tw_p=tweetbutton&url=' + encodeURIComponent(share_url));
+    }
+
+}
+
+function goGame(){
+    document.location = document.location.href.split('?')[0] + '?game';
+}
+
+if( is_game ){
+    $('#control_left, #control_right').css('width','15%');
+    $('#stats').show();
+    $('.twitter:first').hide();
+    $('.text').hide();
+    $('#play').hide();
+    speed = 5;
+    delay_shoot = 100;
+
+    $('.obj').hide();
+    randomZombies();
+    
+    
+    $('#time').html(format_time(time_left));
+
+    timer_time = setInterval(function () {
+
+        time_left--;
+
+
+        if (time_left == 0) {
+            endGame();
+        }
+
+        $('#time').html(format_time(time_left));
+    }, 1000);
+}else{
+    $('#btn_game').fadeIn('slow');
+}
 
 
 resizeScreen();
