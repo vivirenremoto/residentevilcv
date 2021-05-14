@@ -758,6 +758,8 @@ function closeModal(){
         }, 1000, function(){
             
             $('#sound_zombie')[0].play();
+            
+            $('#modal').hide();
         });
 
         $('#bg').stop().animate({
