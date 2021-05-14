@@ -759,6 +759,16 @@ function closeModal(){
             
             $('#sound_zombie')[0].play();
         });
+
+        $('#bg').stop().animate({
+            'background-size': '100%'
+        }, delay_shoot*2);
+
+
+        $('.obj').find('.zombie').stop().animate({
+            width: zombie_width_min,
+            height: 630
+        }, delay_shoot*2);
     }
 
 
@@ -766,18 +776,13 @@ function closeModal(){
     $('#player').stop().css('left',-50).css('bottom', top_diff).css('background-image', "url('static/normal2.png')").animate({bottom:0,left:0}, delay_shoot);
 
 
-    $('#bg').stop().animate({
-        'background-size': '100%'
-    }, delay_shoot*2);
+
 
     setTimeout(function(){
         is_shooting = false;
     }, 1500);
 
-    $('.obj').find('.zombie').stop().animate({
-        width: zombie_width_min,
-        height: 630
-    }, delay_shoot*2);
+
 
 
     /*
@@ -883,10 +888,7 @@ $('.obj').click(function(){
 
 
 
-    $('.obj').find('.zombie').stop().css('margin-left', 10).css('width',zombie_width_min).css('height',630).animate({
-        width: zombie_width_max,
-        height: 680
-    }, 100);
+
 
 
     //$('#player').css('background-image', "url('static/shoot.png')");
@@ -896,13 +898,17 @@ $('.obj').click(function(){
     //}, 1000);
 
 
-
-    $('#bg').stop().css('background-size', '100%').animate({
-        'background-size': '120%'
-    }, 100);
-
-
     if( !is_game ){
+
+        $('.obj').find('.zombie').stop().css('margin-left', 10).css('width',zombie_width_min).css('height',630).animate({
+            width: zombie_width_max,
+            height: 680
+        }, 100);
+
+        $('#bg').stop().css('background-size', '100%').animate({
+            'background-size': '120%'
+        }, 100);
+
         $('.obj').hide();
         $(current_obj).show();
     }
