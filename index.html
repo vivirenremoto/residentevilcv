@@ -522,6 +522,7 @@ var timer_time;
 var best_score = 100;
 var max_stars = 5;
 var count_items = 0;
+var default_top;
 
 var top_diff = -85;
 var screen_width = $(document).width();
@@ -1159,17 +1160,10 @@ function resizeScreen(){
 
         var diff_top = ((screen_height-target_size)/2);
 
-        /*
-
-        if( screen_width < screen_height ){
-            var diff_top = ((screen_height-target_size)/4);
-
-        }else{
-            var diff_top = 15;//15;
-
-        }
-        */
+    
     }
+
+    default_top = diff_top;
 
     $('.obj').css('top', diff_top);
 
@@ -1255,7 +1249,7 @@ function randomZombies(){
         var diff_margin = 40 * diff_rand;
         
 
-        $(this).css('left', pos_x).css('top', parseInt($(this).css('top'))+ diff_margin).fadeIn('fast');
+        $(this).css('left', pos_x).css('top', default_top+ diff_margin).fadeIn('fast');
 
     });
 
