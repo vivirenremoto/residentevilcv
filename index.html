@@ -1235,8 +1235,10 @@ function randomZombies(){
         
         if( screen_width > 1000 ){
             var quarter_rand = randomNumber(2,18);
+            var diff_rand = randomNumber(-2,2);
         }else{
             var quarter_rand = randomNumber(2,18/2);
+            var diff_rand = randomNumber(-2,0);
             
         }
 
@@ -1247,7 +1249,13 @@ function randomZombies(){
         var end_x = start_x + quarter_zone;
 
         var pos_x =  randomNumber(start_x, end_x);
-        $(this).css('left', pos_x).fadeIn('fast');
+
+
+        
+        var diff_margin = 40 * diff_rand;
+        
+
+        $(this).css('left', pos_x).css('top', parseInt($(this).css('top'))+ diff_margin).fadeIn('fast');
 
     });
 
