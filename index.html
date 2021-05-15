@@ -1176,7 +1176,7 @@ function randomNumber(min, max) {
 }
 
 function randomZombies(){
-    $('.obj:hidden').each(function(obj, key){
+    $('.obj:hidden').each(function(key){
         if( key != 4 ){
 
             var third_diff = ((width_sized*30)/100);
@@ -1195,6 +1195,8 @@ function randomZombies(){
             $(this).css('left', pos_x).fadeIn('fast');
         }
     });
+
+   
     
 
 }
