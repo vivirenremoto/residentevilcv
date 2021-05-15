@@ -564,7 +564,12 @@ setInterval(function () {
 }, 4000);
 
 
-$('#sound_shoot')[0].volume = 0.4;
+if( is_game ){
+    $('#sound_shoot')[0].volume = 0.3;
+}else{
+    $('#sound_shoot')[0].volume = 0.4;
+}
+
 $('#sound_music2')[0].volume = 0.4;
 
 $('body').click(function(){
