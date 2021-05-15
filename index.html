@@ -135,6 +135,14 @@ body{
     cursor: url(static/cursor.png) , default!important;
 }
 
+body.game{
+    cursor: url(static/cursor2.png) , default!important;
+}
+
+body.game .obj:hover{
+    cursor: url(static/cursor3.png) , default!important;
+}
+
 a{cursor:pointer;}
 
 .obj, #modal, #ending{
@@ -1338,6 +1346,11 @@ if( is_game ){
     $('.twitter:first').hide();
     $('.text').hide();
     $('#play').hide();
+
+
+    
+    $('body').addClass("game");
+
 
 
     document.addEventListener('contextmenu', event => event.preventDefault());
