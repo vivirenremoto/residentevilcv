@@ -592,7 +592,7 @@ $('body').click(function(){
                 
                 $('#sound_music2')[0].play();
             }else{
-                $('#sound_music2')[0].play();
+                $('#sound_music')[0].play();
             }
         }
     }
@@ -809,6 +809,11 @@ function closeModal(){
     if( is_game ){
         is_shooting = false;
         is_zoom = false;
+
+        
+        setTimeout(function(){
+            is_zoom = false;
+        }, 500);
     }else{
 
         setTimeout(function(){
