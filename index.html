@@ -509,6 +509,7 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
 
 
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 <script src="https://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.js"></script>
@@ -620,7 +621,11 @@ $(window).resize(function(){
 });
 
 function moveStop(){
-    $('#sound_walk')[0].pause();
+
+    if( !is_game ){
+        $('#sound_walk')[0].pause();
+    }
+
     clearInterval(timer_scroll);
     clearInterval(timer_walking);
     timer_walking = false;
@@ -644,7 +649,9 @@ function moveLeft(){
 
     is_zoom = false;
 
-    $('#sound_walk')[0].play();
+    if( !is_game ){
+        $('#sound_walk')[0].play();
+    }
 
     clearInterval(timer_scroll);
     timer_scroll = setInterval(function(){
@@ -682,7 +689,10 @@ function moveRight(){
 
     is_zoom = false;
 
-    $('#sound_walk')[0].play();
+
+    if( !is_game ){
+        $('#sound_walk')[0].play();
+    }
 
     clearInterval(timer_scroll);
     timer_scroll = setInterval(function(){
@@ -798,13 +808,13 @@ function closeModal(){
 
         $('#bg').stop().animate({
             'background-size': '100%'
-        }, delay_shoot*2);
+        }, delay_shoot);
 
 
         $('.obj').find('.zombie').stop().animate({
             width: zombie_width_min,
             height: 630
-        }, delay_shoot*2);
+        }, delay_shoot);
     }
 
 
@@ -1330,6 +1340,7 @@ function updateTime(){
 
         if( time_left == 10 ){
             $('#time').css('color','red');
+
         }
 
         if (time_left == 0) {
