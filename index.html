@@ -27,6 +27,7 @@
     <link rel="prefetch" href="static/mp3/door2.mp3" />
     <link rel="prefetch" href="static/mp3/imbecil.mp3" />
     <link rel="prefetch" href="static/mp3/zombie.mp3" />
+    <link rel="prefetch" href="static/mp3/music2.mp3" />
 
     <meta property="og:image" content="https://vivirenremoto.github.io/residentevilcv/static/social.png">
     <meta property="og:image:secure_url" content="https://vivirenremoto.github.io/residentevilcv/static/social.png">
@@ -221,15 +222,15 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
             <span class="score" style="font-size:100px;color:red">0</span>
             <br>
         
-            <button onclick="goGame();" style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">REPETIR</button>
+            <button style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">REPETIR</button>
             
             <br>
         
-            <button onclick="share();" style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">COMPARTIR</button>
+            <button style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">COMPARTIR</button>
 
             <br>
 
-            <button onclick="goCV();" style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">VOLVER AL CV</button>
+            <button style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">VOLVER AL CV</button>
             
         </div>
 
@@ -437,7 +438,8 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
     <div class="obj" data-content="ending" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
 
         
-        
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
+
 
         <div class="zombie chainsaw" style="background:url('static/chainsaw.png');z-index: 1;height: 630px;margin-left: 10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
 
@@ -456,7 +458,7 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
 <div id="stats" style="display:none;width:300px;margin-left:-150px;left:50%;top:0;position:fixed;z-index:2;text-align:center">
 
-    <div id="time" style="font-size:60px;">0:30</div>
+    <div id="time" style="font-size:60px;"><span style="font-size:30px;line-height:20px;">Acaba con los zombies</span></div>
     <div class="score" id="my_score">0</div>
     
 
@@ -468,6 +470,10 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
     <source src="static/mp3/wind.mp3" type="audio/mp3">
 </audio>
 
+
+<audio id="sound_music2">
+    <source src="static/mp3/music2.mp3" type="audio/mp3">
+</audio>
 
 <audio id="sound_shoot">
     <source src="static/mp3/shoot2.mp3" type="audio/mp3">
@@ -506,12 +512,11 @@ style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:
 
 <script>
     
-var time_left = 30;
+var time_left = 60;
 var timer_time;
 var best_score = 100;
 var max_stars = 5;
 var count_items = 0;
-
 
 var top_diff = -85;
 var screen_width = $(document).width();
@@ -558,14 +563,30 @@ setInterval(function () {
 
 
 $('#sound_shoot')[0].volume = 0.4;
+$('#sound_music2')[0].volume = 0.4;
 
 $('body').click(function(){
     if( !playing_music ){
         playing_music = true;
 
         if( $('#ending:visible').length == 0 ){
-            $('#sound_music')[0].play();
+
             $('#sound_zombie')[0].play();
+
+
+            if( is_game ){
+
+                $('#time').html('<span style="color:red;font-size:70px;">GO!</span>');
+
+                setTimeout(function(){
+                    updateTime();
+                }, 1000);
+
+                
+                $('#sound_music2')[0].play();
+            }else{
+                $('#sound_music2')[0].play();
+            }
         }
     }
 });
@@ -610,7 +631,7 @@ function playerWalk(){
 }
 
 function moveLeft(){
-    if( is_shooting || $('#modal:visible').length == 1 ) return;
+    if( (is_shooting || $('#modal:visible').length == 1) && !is_game ) return;
 
     $('#sound_walk')[0].play();
 
@@ -646,7 +667,7 @@ function moveLeft(){
 }
 
 function moveRight(){
-    if( is_shooting || $('#modal:visible').length == 1 ) return;
+    if( (is_shooting || $('#modal:visible').length == 1) && !is_game ) return;
 
     $('#sound_walk')[0].play();
 
@@ -778,11 +799,16 @@ function closeModal(){
     $('#player').stop().css('left',-50).css('bottom', top_diff).css('background-image', "url('static/normal2.png')").animate({bottom:0,left:0}, delay_shoot);
 
 
-
-
-    setTimeout(function(){
+    if( is_game ){
         is_shooting = false;
-    }, 1500);
+        is_zoom = false;
+    }else{
+
+        setTimeout(function(){
+            is_shooting = false;
+        }, 1500);
+    }
+
 
 
 
@@ -801,13 +827,7 @@ function closeModal(){
     }, 200);
 
 
-    $('.obj').fadeIn('slow', function(){
-
-        if( is_game ){
-            $('.obj:eq(4)').hide();
-        }
-
-    });
+    $('.obj').fadeIn('slow');
 
 
 
@@ -850,7 +870,7 @@ $('.obj').click(function(){
     current_obj = $(this);
 
 
-    if( $(this).data('content') == 'ending' ){
+    if( $(this).data('content') == 'ending' && !is_game ){
         $('#sound_music')[0].pause();
         $('#sound_zombie')[0].pause();
         $('#ending').show();
@@ -940,6 +960,7 @@ $('.obj').click(function(){
                 $('#bg').css('opacity', 1);
             }, 100);
 
+            $('#sound_shoot')[0].currentTime = 0;
             $('#sound_shoot')[0].play();
 
 
@@ -1177,7 +1198,7 @@ function randomNumber(min, max) {
 
 function randomZombies(){
     $('.obj:hidden').each(function(key){
-        if( key != 4 ){
+
 
             var third_diff = ((width_sized*30)/100);
 
@@ -1193,7 +1214,7 @@ function randomZombies(){
 
             var pos_x =  randomNumber(start_x, end_x);
             $(this).css('left', pos_x).fadeIn('fast');
-        }
+
     });
 
    
@@ -1224,7 +1245,21 @@ function endGame(){
     $('#result').show();
     
     setTimeout(function(){
-        $('#result button').fadeIn('slow');
+        
+        $('#result button:eq(0)').click(function(){
+            goGame();
+        });
+        
+        $('#result button:eq(1)').click(function(){
+            share();
+        });
+
+        $('#result button:eq(2)').click(function(){
+            goCV();
+        });
+
+
+
     }, 2000);
     
 }
@@ -1236,7 +1271,7 @@ function share() {
     var share_url = document.location.href;
 
     if (count_items) {
-        share_title += ' 👊 ¡Supera mi puntuación! 🎯' + count_items;
+        share_title += ' 👊 ¡Supera mi puntuación! 💀' + count_items;
     }
 
     if (navigator.share) {
@@ -1260,12 +1295,36 @@ function goCV(){
     document.location = document.location.href.split('?')[0];
 }
 
+function updateTime(){
+    
+    $('#time').html(format_time(time_left));
+
+    timer_time = setInterval(function () {
+
+        time_left--;
+
+
+        if( time_left == 10 ){
+            $('#time').css('color','red');
+        }
+
+        if (time_left == 0) {
+            endGame();
+        }
+
+        $('#time').html(format_time(time_left));
+    }, 1000);
+}
+
 if( is_game ){
     $('#control_left, #control_right').css('width','15%');
     $('#stats').show();
     $('.twitter:first').hide();
     $('.text').hide();
     $('#play').hide();
+
+
+        
 
     if( screen_width > 1000 ){
         speed = 5;
@@ -1276,23 +1335,15 @@ if( is_game ){
     
     delay_shoot = 100;
 
+    //$('.obj:eq(4)').remove();
+
+    $('.chainsaw').css('background-image',"url('static/zombie3.png')").removeClass('chainsaw');
+
     $('.obj').hide();
     randomZombies();
     
     
-    $('#time').html(format_time(time_left));
 
-    timer_time = setInterval(function () {
-
-        time_left--;
-
-
-        if (time_left == 0) {
-            endGame();
-        }
-
-        $('#time').html(format_time(time_left));
-    }, 1000);
 }else{
     $('#btn_game').fadeIn('slow');
 }
