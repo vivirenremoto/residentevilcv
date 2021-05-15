@@ -640,6 +640,8 @@ function playerWalk(){
 function moveLeft(){
     if( (is_shooting || $('#modal:visible').length == 1) && !is_game ) return;
 
+    is_zoom = false;
+
     $('#sound_walk')[0].play();
 
     clearInterval(timer_scroll);
@@ -675,6 +677,8 @@ function moveLeft(){
 
 function moveRight(){
     if( (is_shooting || $('#modal:visible').length == 1) && !is_game ) return;
+
+    is_zoom = false;
 
     $('#sound_walk')[0].play();
 
@@ -811,9 +815,7 @@ function closeModal(){
         is_zoom = false;
 
         
-        setTimeout(function(){
-            is_zoom = false;
-        }, 500);
+
     }else{
 
         setTimeout(function(){
@@ -1212,20 +1214,20 @@ function randomZombies(){
     $('.obj:hidden').each(function(key){
 
 
-            var third_diff = ((width_sized*30)/100);
+        var third_diff = ((width_sized*30)/100);
 
-            var quarter_zone = width_sized/20;
-            var quarter_rand = randomNumber(2,18);
-
-
+        var quarter_zone = width_sized/20;
+        var quarter_rand = randomNumber(2,18);
 
 
 
-            var start_x = quarter_rand * quarter_zone;
-            var end_x = start_x + quarter_zone;
 
-            var pos_x =  randomNumber(start_x, end_x);
-            $(this).css('left', pos_x).fadeIn('fast');
+
+        var start_x = quarter_rand * quarter_zone;
+        var end_x = start_x + quarter_zone;
+
+        var pos_x =  randomNumber(start_x, end_x);
+        $(this).css('left', pos_x).fadeIn('fast');
 
     });
 
@@ -1336,7 +1338,7 @@ if( is_game ){
     $('#play').hide();
 
 
-        
+    document.addEventListener('contextmenu', event => event.preventDefault());
 
     if( screen_width > 1000 ){
         speed = 5;
