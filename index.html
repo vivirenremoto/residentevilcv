@@ -131,22 +131,16 @@ li{margin-bottom:10px;}
 }
 
 
-body{
-    cursor: url(static/cursor.png) , default!important;
-}
-
-body.game{
+body, #modal, #ending{
     cursor: url(static/cursor2.png) , default!important;
 }
 
-body.game .obj:hover{
-    cursor: url(static/cursor3.png) , default!important;
-}
+
 
 a{cursor:pointer;}
 
-.obj, #modal, #ending{
-    cursor: url(static/cursor2.png) , default!important;
+.obj{
+    cursor: url(static/cursor3.png) , default!important;
 }
 
 
@@ -185,7 +179,7 @@ a{cursor:pointer;}
 
 @media screen and (max-width: 1000px) {
     #player{background-size:60% auto;height:300px;}
-    #control_left, #control_right{width:15%;}
+    #control_left, #control_right{width:10%;}
     #modal{width:100%;}
     
     .obj{z-index:3;}
@@ -1227,8 +1221,14 @@ function randomZombies(){
         var third_diff = ((width_sized*30)/100);
 
         var quarter_zone = width_sized/20;
-        var quarter_rand = randomNumber(2,18);
 
+        
+        if( screen_width > 1000 ){
+            var quarter_rand = randomNumber(2,18);
+        }else{
+            var quarter_rand = randomNumber(2,18/2);
+            
+        }
 
 
 
@@ -1349,8 +1349,6 @@ if( is_game ){
 
 
     
-    $('body').addClass("game");
-
 
 
     document.addEventListener('contextmenu', event => event.preventDefault());
