@@ -730,6 +730,15 @@ function moveRight(){
 
 
 if( screen_width > 1000 ){
+
+
+    $('#bg').click(function(){
+        if( $('#modal:visible').length == 1 ){
+            closeModal();
+        }
+    });
+    
+
     $('#control_left').mousemove(function(){
         moveLeft();
     });
@@ -882,7 +891,6 @@ $("#over").on("swiperight", function () {
 });
 
 
-      
 
 
 
