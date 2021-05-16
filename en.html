@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Resident Evil Resume - Miquel Camps Orteza</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
+    <link rel="shortcut icon" href="favicon.ico"/>
+
+
+    <link rel="prefetch" href="static/blood2.gif" />
+    <link rel="prefetch" href="static/raven.gif" />
+    <link rel="prefetch" href="static/door3.gif" />
+    <link rel="prefetch" href="static/life3.gif" />
+    <link rel="prefetch" href="static/bg.jpg" />
+    <link rel="prefetch" href="static/zombie3.png" />
+    <link rel="prefetch" href="static/chainsaw.png" />
+    <link rel="prefetch" href="static/normal2.png" />
+    <link rel="prefetch" href="static/shoot.png" />
+    <link rel="prefetch" href="static/shoot2.png" />
+    <link rel="prefetch" href="static/mp3/wind.mp3" />
+    <link rel="prefetch" href="static/mp3/shoot2.mp3" />
+    <link rel="prefetch" href="static/mp3/raven2.mp3" />
+    <link rel="prefetch" href="static/mp3/walk4.mp3" />
+    <link rel="prefetch" href="static/mp3/select2.mp3" />
+    <link rel="prefetch" href="static/mp3/door2.mp3" />
+    <link rel="prefetch" href="static/mp3/imbecil.mp3" />
+    <link rel="prefetch" href="static/mp3/zombie.mp3" />
+    <link rel="prefetch" href="static/mp3/music2.mp3" />
+
+    <meta property="og:image" content="https://vivirenremoto.github.io/residentevilcv/static/social.png">
+    <meta property="og:image:secure_url" content="https://vivirenremoto.github.io/residentevilcv/static/social.png">
+    <meta property="og:image:alt" content="Resident Evil Resume - Miquel Camps Orteza">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Resident Evil Resume - Miquel Camps Orteza">
+    <meta name="twitter:image" content="https://vivirenremoto.github.io/residentevilcv/static/social.png">
+
+
+</head>
+<body style="overflow:hidden;">
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H0ZEQCSGWX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-H0ZEQCSGWX');
+</script>
+
+
+<style>
+
+
+* {
+    font-size:25px;
+
+    font-family: 'VT323', monospace;
+    text-transform: uppercase;
+
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                    supported by Chrome, Edge, Opera and Firefox */
+
+    /* evitar elementos seleccionados al clicar */
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    touch-action: pan-x pan-y;
+}
+
+a{color:white;text-decoration:none;}
+
+a:hover{text-decoration:underline;}
+
+h2{color:#00ff00;font-size:40px;float:left;margin-top:-7px;font-weight:normal;
+
+    background: url('static/life3.gif');
+    padding: 33px 39px;
+    padding-right:0;
+    background-size: auto 200%;
+    margin-top: -35px;
+    background-repeat: no-repeat;
+    width: 187px;
+    background-position: -36px -38px;
+
+
+
+}
+
+ul{clear:both;top:-20px;position:relative;}
+li{margin-bottom:10px;}
+
+#player{background-size:100%;height:494px;}
+
+#control_left, #control_right{width:20%;}
+
+#modal{width:50%;}
+
+#modal a:hover{color:red;}
+
+.obj{z-index:1;/*border:1px black solid;*/}
+
+/*
+.obj:hover .zombie{
+    filter: drop-shadow(2px 4px 8px red);
+}
+*/
+
+ #close:hover{
+    -webkit-box-shadow: 0 0 35px red;
+    -moz-box-shadow: 0 0 35px red;
+    box-shadow: 0 0 35px red;
+}
+
+
+body, #modal, #ending{
+    cursor: url(static/cursor2.png) , default!important;
+}
+
+
+
+a{cursor:pointer;}
+
+.obj{
+    cursor: url(static/cursor3.png) , default!important;
+}
+
+
+#play {
+    cursor: pointer;
+    border: 1px #ccc solid;
+    display: none;
+    padding: 5px 0;
+    padding-top:0;
+    width: 140px;
+    background: white;
+    position: fixed;
+    left: 50%;
+    /*margin-left: -70px;*/
+    text-align: center;
+    font-family: Arial;
+    z-index: 6;
+    text-decoration: none;
+    top: 0;
+    color:black;
+}
+
+
+#modal .div_padding{
+    padding:30px;
+}
+
+.blood{margin-top:-80px;margin-left:-70px;}
+
+
+#video{width:800px;height:438px;}
+
+#my_score{font-size:60px;padding:10px 40px 40px 40px;margin-right:-35px;margin-bottom:-35px;background:red;color:white;position:fixed;right:0;bottom:0;border-radius: 40px;background-clip: padding-box;width:100px;background-image:url('static/cursor2.png');background-repeat:no-repeat;background-position:20px 25px;}
+
+.chainsaw{margin-top:-70px;}
+
+@media screen and (max-width: 1000px) {
+    #player{background-size:60% auto;height:300px;}
+    #control_left, #control_right{width:10%;}
+    #modal{width:100%;}
+    
+    .obj{z-index:3;}
+    #play{display:none !important;}
+
+
+    #modal .div_padding{
+        padding-top:60px;
+    }
+
+
+    .blood{margin-top:-100px;margin-left:-80px;}
+
+        
+    #video{width:400px;height:219px;}
+
+    
+    .chainsaw{margin-top:-30px;}
+    
+    #my_score{font-size:50px;padding:5px 30px 30px 30px;margin-right:-35px;margin-bottom:-30px;background-position:20px 18px;}
+
+}
+</style>
+
+
+<a href="https://twitter.com/vivirenremoto" target="_blank" class="twitter" 
+style="cursor:pointer;font-size:30px;position:fixed;right:10px;top:10px;z-index:6;color:black;text-decoration:none;">by
+@vivirenremoto</a>
+
+<a href="http://bit.ly/play_residentevil" id="play" target="_blank" style="display: inline;">
+    <span style="font-size:20px;" id="btn_cta" data-cta1="Nostalgia?" data-cta2="Buy game">Nostalgia?</span></a>
+
+
+<div onclick="goGame()" id="btn_game" style="cursor:pointer;display:none;z-index:5;background:red;width:65px;text-align:center;padding:15px 0 13px 0;border-radius:100px;position:absolute;left:20px;top:20px;"><img src="static/cursor2.png" width="30" height="30"></div>
+
+
+<div id="result" style="cursor:default;display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:black;z-index:999;">
+
+    <div style="text-align:center;color:white;display: flex;align-items: center;justify-content: center;height:100%;width:100%;">
+
+        <div style="font-size:50px;">
+            Your score
+            <br>
+            <span class="score" style="font-size:100px;color:red">0</span>
+            <br>
+        
+            <button style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">TRY AGAIN</button>
+            
+            <br>
+        
+            <button style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">SHARE</button>
+
+            <br>
+
+            <button style="width:200px;text-align:center;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">BACK TO RESUME</button>
+            
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div id="ending" style="display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:black;z-index:999;">
+
+
+    <div style="display: flex;align-items: center;justify-content: center;height:100%;width:100%;">
+
+
+        <video width="320" height="240" id="video" style="max-width:100%">
+            <source src="static/ending.mp4" type="video/mp4">
+        </video>
+
+
+        <button onclick="document.location.reload()" style="text-align:center;display:none;cursor:pointer;text-decoration:none;border:5px white solid;padding:10px 20px;margin-top:20px;color:white;background:black;">VOLVER A EMPEZAR</button>
+        
+    </div>
+
+</div>
+
+<div id="modal" style="color:white;z-index:7;position:fixed;top:0;height:100%;background:black;left:50%;top:0;display:none">
+    <div class="div_padding">
+
+        <button id="close" style="cursor:pointer;margin-top:-10px;float:right;background:white;border-radius:100px;width:55px;padding:5px 0;border:5px white solid;position:relative;z-index:1;">
+        
+            <svg style="margin-top:5px;" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M1.293 1.293a1 1 0 0 1 1.414 0L8 6.586l5.293-5.293a1 1 0 1 1 1.414 1.414L9.414 8l5.293 5.293a1 1 0 0 1-1.414 1.414L8 9.414l-5.293 5.293a1 1 0 0 1-1.414-1.414L6.586 8 1.293 2.707a1 1 0 0 1 0-1.414z"/>
+              </svg>
+        
+        </button>
+
+        <div id="content_house" class="pages" style="display: none;">
+            <h2>My stuff</h2>
+            <ul>
+                <li>
+                    <a href="https://twitter.com/vivirenremoto/" target="_blank" class="twitter">Twitter</a>
+                </li>
+                <li>
+                    <a href="https://youtube.com/vivirenremoto/" target="_blank">Youtube</a>
+                </li>
+                <li>
+                    <a href="https://perfectsetup.pro/setups/mi-setup-vivirenremoto/" target="_blank">Setup</a>
+                </li>
+                <li>
+                    <a href="https://www.twitch.tv/vivirenremoto/" target="_blank">Twitch</a>
+                </li>
+                <li>
+                    <a href="/" target="_blank">Projects</a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div id="content_blacksmith" class="pages" style="display: none;">
+            <h2>Tools</h2>
+            <ul>
+                <li>
+                    Visual Studio Code
+                </li>
+                <li>
+                    Firefox
+                </li>
+                <li>
+                    WinSCP
+                </li>
+                <li>
+                    Termius
+                </li>
+                <li>
+                    Trello
+                </li>
+            </ul>
+        </div>
+
+        <div id="content_university" class="pages" style="display: none;">
+            <h2>Experience</h2>
+            <ul>
+                <li>
+                    <a href="https://www.isocialweb.agency/" target="_blank">iSocialWeb - DEV</a>
+                </li>
+                <li>
+                    <a href="https://www.elcorteingles.es/" target="_blank">El Corte Inglés - SEO</a>
+                </li>
+                <li>
+                    <a href="https://internetrepublica.com/" target="_blank">Internet República - DEV</a>
+                </li>
+                <li>
+                    <a href="https://prensarank.com/" target="_blank">Prensarank - DEV</a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/miquelcamps/" target="_blank">My LinkedIn</a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="content_barracks" class="pages" style="">
+            <h2>Skills</h2>
+            <ul>
+                <li>
+                    Web development (php-js)
+                </li>
+                <li>
+                    Chrome Extensions
+                </li>
+                <li>
+                    Web Scraping
+                </li>
+                <li>
+                    APIs
+                </li>
+                <li>
+                    Git
+                </li>
+            </ul>
+        </div>
+
+
+    
+    </div>
+</div>
+
+
+
+
+<div id="control_left" style="opacity:0.5;z-index:3;position:fixed;left:0;top:0;height:100%;"></div>
+
+<div id="control_right" style="opacity:0.5;z-index:3;position:fixed;right:0;top:0;height:100%;"></div>
+
+
+<!--
+<div id="over" style="position:fixed;z-index:2;left:0;top:0;width:100%;height:100%;"></div>
+-->
+
+<div id="player" style="z-index:2;background-image:url('static/normal2.png');width:420px;background-repeat:no-repeat;background-position:left bottom;position:fixed;left:0;bottom:0;"></div>
+
+
+
+<div id="bg" style="position:fixed;left:0;top:0;width:100%;height:100%;background:url('static/bg.jpg');background-size:auto 100%;background-repeat:no-repeat;">
+
+    <div class="obj" data-content="house" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+
+
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
+
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
+
+
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-30px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">my stuff</div>
+          
+
+    </div>
+    <div class="obj" data-content="barracks" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+    
+
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
+
+
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
+
+
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-30px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">skills</div>
+            
+
+    </div>
+    <div class="obj" data-content="university" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
+
+
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
+
+
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-30px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">Experience</div>
+          
+        
+    </div>
+    <div class="obj" data-content="blacksmith" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+
+        
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
+
+
+        <div class="zombie" style="background:url('static/zombie3.png');z-index: 1;height: 630px;margin-left: 10px;margin-top:10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
+
+
+
+        <div class="text" style="font-weight:bold;text-shadow: 0px 2px 2px rgb(0 0 0);margin-top:15px;margin-top:-30px;position:fixed;color:red;margin-left:-50px;width:200px;text-align:center;font-size:27px;">tools</div>
+          
+        
+
+
+    </div>
+
+
+
+    <div class="obj" data-content="ending" style="text-align:center;width:100px;height:100px;border-radius:100px;position:absolute;left:500px;top:300px;">
+
+        
+        <div class="blood" style="display:none;background:url('static/blood2.gif');width:200px;height:200px;position:absolute;z-index:2;"></div>
+
+
+        <div class="zombie chainsaw" style="background:url('static/chainsaw.png');z-index: 1;height: 630px;margin-left: 10px;background-position: center top;background-size: 100%;position:absolute;background-repeat:no-repeat;"></div>
+
+
+        
+
+
+    </div>
+
+
+
+    <div id="raven" style="z-index:1;background-image:url('static/raven.gif');background-size:cover;display:none;background-repeat:no-repeat;background-position:center center;position:absolute;"></div>
+
+</div>
+
+
+<div id="stats" style="display:none;width:300px;margin-left:-150px;left:50%;top:0;position:fixed;z-index:2;text-align:center">
+
+    <div id="time" style="font-size:60px;"><span style="font-size:30px;top:-15px;position:relative;">Kill the zombies</span></div>
+    <div class="score" id="my_score">0</div>
+    
+
+</div>
+
+
+
+<audio id="sound_music" loop>
+    <source src="static/mp3/wind.mp3" type="audio/mp3">
+</audio>
+
+
+<audio id="sound_music2">
+    <source src="static/mp3/music2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_shoot">
+    <source src="static/mp3/shoot2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_raven">
+    <source src="static/mp3/raven2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_walk" loop>
+    <source src="static/mp3/walk4.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_select">
+    <source src="static/mp3/select2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_door">
+    <source src="static/mp3/door2.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_imbecil">
+    <source src="static/mp3/imbecil.mp3" type="audio/mp3">
+</audio>
+
+<audio id="sound_zombie" loop>
+    <source src="static/mp3/zombie.mp3" type="audio/mp3">
+</audio>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/mobile/1.5.0-rc1/jquery.mobile-1.5.0-rc1.min.js"></script>
+
+
+<script>
+    
+var time_left = 60;
+var timer_time;
+var best_score = 100;
+var max_stars = 5;
+var count_items = 0;
+var default_top;
+
+var top_diff = -85;
+var screen_width = $(document).width();
+var screen_width_half = parseInt(screen_width / 2);
+var screen_height = $(document).height();
+var screen_height_half = parseInt(screen_height / 2);
+var speed;
+var target_size = 100;
+var is_shooting = false;
+var is_zoom = false;
+var zombie_width_min;
+var zombie_width_max;
+var is_game = document.location.href.indexOf('game') > - 1;
+
+
+    
+
+var height_sized;
+var ratio;
+var width_sized;
+
+var current_x = parseInt($('#bg').css('left'));
+var timer_scroll;
+var timer_walking;
+var current_obj;
+var playing_music = false;
+var walk_diff = 400;
+var delay_shoot = 500;
+
+
+setInterval(function () {
+
+
+    $('#btn_cta').html($('#btn_cta').data('cta2'));
+
+    setTimeout(function () {
+
+
+        $('#btn_cta').html($('#btn_cta').data('cta1'));
+
+    }, 2000);
+
+}, 4000);
+
+
+if( is_game ){
+    $('#sound_shoot')[0].volume = 0.3;
+}else{
+    $('#sound_shoot')[0].volume = 0.4;
+}
+
+$('#sound_music2')[0].volume = 0.4;
+
+$('body').click(function(){
+    if( !playing_music ){
+        playing_music = true;
+
+        if( $('#ending:visible').length == 0 ){
+
+            $('#sound_zombie')[0].play();
+
+
+            if( is_game ){
+
+                $('#time').html('<span style="color:red;font-size:70px;">GO</span>');
+
+                setTimeout(function(){
+                    updateTime();
+                }, 1000);
+
+                
+                $('#sound_music2')[0].play();
+            }else{
+                $('#sound_music')[0].play();
+            }
+        }
+    }
+});
+
+$('.twitter').click(function(){
+
+    setTimeout(function(){
+        $('#sound_imbecil')[0].play();
+
+    }, 1000);
+})
+
+$('a').click(function(e){
+    e.preventDefault();
+    $('#sound_door')[0].play();
+
+    window.open('door.html?url=' + encodeURIComponent($(this).attr('href')) );
+});
+
+$(window).resize(function(){
+    resizeScreen();
+});
+
+function moveStop(){
+
+    if( !is_game ){
+        $('#sound_walk')[0].pause();
+    }
+
+    clearInterval(timer_scroll);
+    clearInterval(timer_walking);
+    timer_walking = false;
+}
+
+
+function playerWalk(){
+
+    $('#player').stop().animate({
+        bottom: -20
+    }, walk_diff, function(){
+        $('#player').stop().animate({
+            bottom: 0
+        }, walk_diff); 
+    });
+
+}
+
+function moveLeft(){
+    if( (is_shooting || $('#modal:visible').length == 1) && !is_game ) return;
+
+    is_zoom = false;
+
+    if( !is_game ){
+        $('#sound_walk')[0].play();
+    }
+
+    clearInterval(timer_scroll);
+    timer_scroll = setInterval(function(){
+        current_x = parseInt($('#bg').css('left'));
+        current_x += speed;
+        if( current_x > 0 ){
+            clearInterval(timer_scroll);
+            return;
+        }
+        $('#bg').css('left', current_x);
+
+
+
+
+
+    }, 1);
+
+
+    if( !timer_walking ){
+
+        //clearInterval(timer_walking);
+
+        playerWalk();
+
+        timer_walking = setInterval(function(){
+            playerWalk();
+        }, walk_diff*2);
+
+    }
+
+}
+
+function moveRight(){
+    if( (is_shooting || $('#modal:visible').length == 1) && !is_game ) return;
+
+    is_zoom = false;
+
+
+    if( !is_game ){
+        $('#sound_walk')[0].play();
+    }
+
+    clearInterval(timer_scroll);
+    timer_scroll = setInterval(function(){
+        current_x = parseInt($('#bg').css('left'));
+        current_x -= speed;
+        if( current_x < ((width_sized-screen_width)*-1) ){
+            clearInterval(timer_scroll);
+
+
+
+            return;
+        }
+        $('#bg').css('left', current_x);
+    
+    
+    
+    
+    }, 1);
+
+
+    if( !timer_walking ){
+
+        //clearInterval(timer_walking);
+
+        playerWalk();
+        
+        timer_walking = setInterval(function(){
+            playerWalk();
+        }, walk_diff*2);
+
+    }
+
+}
+
+
+if( screen_width > 1000 ){
+
+
+    $('#bg').click(function(){
+        if( $('#modal:visible').length == 1 ){
+            closeModal();
+        }
+    });
+    
+
+    $('#control_left').mousemove(function(){
+        moveLeft();
+    });
+
+    $('#control_left').mouseout(function(){
+        moveStop();
+    });
+
+
+    $('#control_right').mousemove(function(){
+        moveRight();
+    });
+
+    $('#control_right').mouseout(function(){
+        moveStop();
+    });
+
+    
+    $('.obj').mousedown(function(){
+        is_shooting = true;
+    });
+
+    $("body").keydown(function (e) {
+        if (e.keyCode == 37 || e.keyCode == 65) {
+            moveLeft();
+        } else if (e.keyCode == 39 || e.keyCode == 68) {
+            moveRight();
+        }
+    });
+
+
+    $("body").keyup(function (e) {
+        moveStop();
+    });
+
+}else{
+
+    $('#control_left').on("vmousedown",function(){
+        moveLeft();
+    });
+
+    $('#control_left').on("vmouseup",function(){
+        moveStop();
+    });
+
+    $('#control_right').on("vmousedown",function(){
+        moveRight();
+    });
+
+    $('#control_right').on("vmouseup",function(){
+        moveStop();
+    });
+
+
+    $('.obj').on('vmousedown', function(){
+        is_shooting = true;
+    });
+
+}
+
+function closeModal(){
+
+    is_zoom = false;
+
+    if( !is_game ){
+        $('#sound_select')[0].play();
+
+
+        $("#modal").animate({
+            marginLeft:screen_height_half
+        }, 1000, function(){
+            
+            $('#sound_zombie')[0].play();
+            
+            $('#modal').hide();
+        });
+
+        $('#bg').stop().animate({
+            'background-size': '100%'
+        }, delay_shoot);
+
+
+        $('.obj').find('.zombie').stop().animate({
+            width: zombie_width_min,
+            height: 630
+        }, delay_shoot);
+    }
+
+
+
+    $('#player').stop().css('left',-50).css('bottom', top_diff).css('background-image', "url('static/normal2.png')").animate({bottom:0,left:0}, delay_shoot);
+
+
+    if( is_game ){
+        is_shooting = false;
+        is_zoom = false;
+
+        
+
+    }else{
+
+        setTimeout(function(){
+            is_shooting = false;
+        }, 1500);
+    }
+
+
+
+
+
+    /*
+    $('.obj').find('svg').stop().animate({
+        width: 70,
+        height: 70,
+    }, 200);
+    */
+
+    $('.obj').find('.text').stop().animate({
+        fontSize: 27,
+        width: 200,
+        marginTop: -30
+    }, 200);
+
+
+    $('.obj').fadeIn('slow');
+
+
+
+    //$('.obj').css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0).fadeIn('slow');
+    //$('.obj').find('.text').css('font-size', 27).css('width',200);
+}
+
+$("#close").click(function(){
+
+    closeModal();
+
+
+});
+
+$("#over").on("swipeleft", function () {
+    $("#bg").animate({
+        left: '-=300'
+    }, 1000);
+});
+
+$("#over").on("swiperight", function () {
+    $("#bg").animate({
+        left: '+=300'
+    }, 1000);
+});
+
+
+
+
+
+$('.obj').click(function(){
+
+    if( is_zoom ){
+        return;
+    }
+
+    moveStop();
+
+    is_zoom = true;
+
+    current_obj = $(this);
+
+
+    if( $(this).data('content') == 'ending' && !is_game ){
+        $('#sound_music')[0].pause();
+        $('#sound_zombie')[0].pause();
+        $('#ending').show();
+        $('#video')[0].play();
+
+        setTimeout(function(){
+            $('#video').fadeOut('fast', function(){
+                $('#ending button').fadeIn('slow');
+            });
+        }, 1000*16);
+        return;
+    }
+    
+
+    
+    var img_shoot = 'shoot.png';
+
+    if( screen_width < 1000 && screen_width < screen_height ){
+        img_shoot = 'shoot2.png';
+    }
+
+
+
+
+
+
+
+    $('.obj').stop().css('width', 100).css('height', 100).css('margin-top', 0).css('margin-left', 0);
+
+
+
+    $('.obj').find('.text').stop().css('font-size', 27).css('width',200).animate({
+        fontSize: 40,
+        width: 220,
+        marginTop: -40
+    }, 100);
+
+
+
+
+
+
+    //$('#player').css('background-image', "url('static/shoot.png')");
+
+    //setTimeout(function(){
+        //$('#player').css('background-image', "url('static/normal2.png')");
+    //}, 1000);
+
+
+    if( !is_game ){
+
+        $('.obj').find('.zombie').stop().css('margin-left', 10).css('width',zombie_width_min).css('height',630).animate({
+            width: zombie_width_max,
+            height: 680
+        }, 100);
+
+        $('#bg').stop().css('background-size', '100%').animate({
+            'background-size': '120%'
+        }, 100);
+
+        $('.obj').hide();
+        $(current_obj).show();
+    }
+
+
+    $('#player').stop().css('left', 0).css('bottom',0).animate(
+    {
+        bottom: top_diff,
+        left: -50,
+        //width:600,
+        //height:671,
+        //left: -100,
+    },
+    100    
+    ,function(){
+
+
+        $('#player').css('left',0).css('bottom',0).css('background-image', "url('static/" + img_shoot + "')");
+
+        
+
+        setTimeout(function(){
+
+            $('#bg').css('opacity', 0.7);
+
+            setTimeout(function(){
+                $('#bg').css('opacity', 1);
+            }, 100);
+
+            $('#sound_shoot')[0].currentTime = 0;
+            $('#sound_shoot')[0].play();
+
+
+            if( !is_game ){
+                $('#sound_raven')[0].play();
+                $('#sound_zombie')[0].pause();
+            }
+            
+            
+
+            //$('.obj').fadeOut('fast', function(){
+
+            
+            $(current_obj).find('.blood').show();
+            setTimeout(function(){
+                $(current_obj).find('.blood').hide();
+
+
+                if( is_game ){
+
+                    count_items++;
+                    $('.score').html(count_items);
+
+                    $(current_obj).hide();
+
+                    is_shooting = false;
+
+                    randomZombies();
+
+                    closeModal();
+                }
+
+            }, 300);
+
+
+
+            if( is_game ){
+                
+                return;
+            }else{
+
+                $('.obj').fadeOut('slow');
+            }
+                        
+
+
+
+
+
+
+                $('#raven').stop().css('left', $(current_obj).css('left') ).css('top', $(current_obj).css('top') ).show().animate({
+                    top: target_size*-1,
+                    left: '+=' + screen_width_half//screen_width
+                }, 800, function(){
+
+
+
+
+
+
+                    $('.pages').hide();
+
+
+                    if( screen_width > 1000 ){
+                        var margin_diff = screen_width_half;
+                    }else{
+                        var margin_diff = screen_width;
+                    }
+
+                    $('#modal').stop().css('left',screen_width).show().animate({
+                        marginLeft: margin_diff * -1
+                    }, function(){
+                        
+                        $('#content_' + $(current_obj).data('content')).show();
+                        
+                    });
+                });
+
+
+            //});
+
+            
+
+
+
+            setTimeout(function(){
+
+
+                /*
+                $('#player').css('bottom', top_diff).css('background-image', "url('static/normal2.png')");
+
+
+                $('#bg').stop().animate({
+                    'background-size': '100%'
+                }, 100);
+                */
+
+                $('#player').stop().animate(
+                {
+                    bottom: 0,
+                    //width: 420,
+                    //height: 494,
+                    //left:0
+                },
+                100    
+                ,function(){
+            
+         
+                    
+                    
+
+
+
+                    //is_shooting = false;
+
+        
+
+                });
+
+
+                
+
+            }, 1000);
+
+
+        }, delay_shoot);
+    });
+});
+
+
+function resizeScreen(){
+    
+    screen_width = $(document).width();
+    screen_width_half = parseInt(screen_width / 2);
+    screen_height = $(document).height();
+    screen_height_half = parseInt(screen_height / 2);
+
+    height_sized = ((screen_height*100)/360);
+
+    ratio = screen_height / 360;
+
+
+    width_sized = 2700 * ratio;//((2700*screen_height)/height_sized);
+
+    current_x = 0;
+    
+    $('#bg').css('width', width_sized).css('left', 0);
+    $('#raven').css('width', target_size).css('height', target_size);
+
+
+    if( screen_width > 1000 ){
+        var diff_top = ((screen_height-target_size)/2);
+
+
+        zombie_width_min = 250;
+        zombie_width_max = 300;
+
+
+
+
+
+    }else{
+
+
+        zombie_width_min = 170;
+        zombie_width_max = 220;
+
+
+        var diff_top = ((screen_height-target_size)/2);
+
+    
+    }
+
+    default_top = diff_top;
+
+    $('.obj').css('top', diff_top);
+
+    $('.zombie').css('width', zombie_width_min);
+
+
+    // movil portait ?
+    if( screen_width < screen_height ){
+        $('.obj:eq(0)').css('left', screen_width);
+        $('.obj:eq(1)').css('left', screen_width*3);
+        $('.obj:eq(2)').css('left', screen_width*5);
+        $('.obj:eq(3)').css('left', screen_width*7);
+        $('.obj:eq(4)').css('left', screen_width*8);
+    }else{
+        $('.obj:eq(0)').css('left', screen_width_half);
+        $('.obj:eq(1)').css('left', screen_width_half+(screen_width_half*2));
+        $('.obj:eq(2)').css('left', screen_width_half+(screen_width_half*3));
+        $('.obj:eq(3)').css('left', screen_width_half+(screen_width_half*4));
+        $('.obj:eq(4)').css('left', screen_width_half+(screen_width_half*5));
+    }
+
+
+    if( !is_game ){
+        if( screen_width > 1000 ){
+            speed = 2;
+        }else{
+            speed = 1.7;
+        }
+    }
+
+    
+
+    if( document.location.href.indexOf('test') > -1 ){
+        time_left = 1;
+        speed = 4;
+    }
+}
+
+
+
+function randomNumber(min, max) {
+    if (min > max) {
+        let temp = max;
+        max = min;
+        min = temp;
+    }
+
+    if (min <= 0) {
+        return Math.floor(Math.random() * (max + Math.abs(min) + 1)) + min;
+    } else {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+}
+
+function randomZombies(){
+    $('.obj:hidden').each(function(key){
+
+
+        var third_diff = ((width_sized*30)/100);
+
+        var quarter_zone = width_sized/20;
+
+        
+        if( screen_width > 1000 ){
+            var quarter_rand = randomNumber(2,18);
+            var diff_rand = randomNumber(-1,1);
+        }else{
+            var quarter_rand = randomNumber(2,14);
+            var diff_rand = randomNumber(-1,1);
+            
+        }
+
+
+
+
+        var start_x = quarter_rand * quarter_zone;
+        var end_x = start_x + quarter_zone;
+
+        var pos_x =  randomNumber(start_x, end_x);
+
+
+        
+        var diff_margin = 40 * diff_rand;
+        
+
+        $(this).css('left', pos_x).css('top', default_top+ diff_margin).fadeIn('fast');
+
+    });
+
+   
+    
+
+}
+
+
+function format_time(time) {
+    // Hours, minutes and seconds
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
+
+    // Output like "1:01" or "4:03:59" or "123:03:59"
+    var ret = "";
+    if (hrs > 0) {
+        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    }
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
+}
+
+
+function endGame(){
+    clearInterval(timer_time);
+    $('#result').show();
+    
+    setTimeout(function(){
+        
+        $('#result button:eq(0)').click(function(){
+            goGame();
+        });
+        
+        $('#result button:eq(1)').click(function(){
+            share();
+        });
+
+        $('#result button:eq(2)').click(function(){
+            goCV();
+        });
+
+
+
+    }, 2000);
+    
+}
+
+function share() {
+
+
+    var share_title = document.title;
+    var share_url = document.location.href;
+
+    if (count_items) {
+        share_title += ' 👊 ¡Supera mi puntuación! 💀' + count_items;
+    }
+
+    if (navigator.share) {
+        navigator.share({
+            title: share_title,
+            url: share_url
+        });
+
+    } else {
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(share_title) + '&tw_p=tweetbutton&url=' + encodeURIComponent(share_url));
+    }
+
+}
+
+function goGame(){
+    document.location = document.location.href.split('?')[0] + '?game';
+}
+
+
+function goCV(){
+    document.location = document.location.href.split('?')[0];
+}
+
+function updateTime(){
+    
+    $('#time').html(format_time(time_left));
+
+    timer_time = setInterval(function () {
+
+        time_left--;
+
+
+        if( time_left == 10 ){
+            $('#time').css('color','red');
+
+        }
+
+        if (time_left == 0) {
+            endGame();
+        }
+
+        $('#time').html(format_time(time_left));
+    }, 1000);
+}
+
+if( is_game ){
+    $('#control_left, #control_right').css('width','15%');
+    $('#stats').show();
+    $('.twitter:first').hide();
+    $('.text').hide();
+    $('#play').hide();
+
+
+    
+
+
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    if( screen_width > 1000 ){
+        speed = 5;
+    }else{
+        speed = 4;
+    }
+
+    
+    delay_shoot = 100;
+
+    //$('.obj:eq(4)').remove();
+
+    $('.chainsaw').css('background-image',"url('static/zombie3.png')").removeClass('chainsaw');
+
+    $('.obj').hide();
+    randomZombies();
+    
+    
+
+}else{
+    $('#btn_game').fadeIn('slow');
+}
+
+
+
+resizeScreen();
+</script>
+
+</body>
+</html>
